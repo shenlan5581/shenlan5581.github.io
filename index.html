@@ -14,9 +14,7 @@
         Learn
       <div id = "auther"> 22542812@qq.com </div>
     </top>
- 
-
-
+  
       <div class="content" >
           <div onclick="show('1')"> C++ namespace</div>  
           <content  id = "1"> 
@@ -89,7 +87,46 @@
            </pre>
           </content>
       </div> 
-      
+
+      <div class="content" >
+        <div onclick="show('2')">linux epoll--IO</div>  
+        <content  id = "2"> 
+          <pre>  
+             #include < sys/epoll.h >  
+
+             struct epoll_event  
+             该结构体用于 传递信息
+              
+             epoll_fd = epoll_create(MAXEPOLLFD);   //epoll
+             创建                      最大监听数
+   
+             event.data.fd = listen_fd;     //设置监听信息
+             event.events = EPOLLIN | EPOLLET;
+
+             epoll_ctl(epoll_fd,EPOLL_CTL_ADD,listen_fd,&event);  
+             //添加 套接字  
+            
+             while(1)
+             {
+              n = epoll_wait(epoll_fd,events,MAXEPOLLFD,-1);
+                 n为触发的 数目
+                
+                 for(i< n )
+                 {
+                 if 新链接
+                 client=accept(listen_fd,&addr,&len);
+                     add
+                 else if 可读
+                     read
+                 else if  可写
+                    writre
+                 else if  关闭
+                    close 
+                 }
+              }
+         </pre>
+        </content>
+      </div>      
       
  
  
