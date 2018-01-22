@@ -45,7 +45,7 @@ pre {
   font-size: 15px;
 }
 .red{
-  color:rgb(177, 54, 54);font-size: 12px;
+  color:rgb(177, 54, 54);font-size: 14px;
 }
 .blue{
   color:rgb(18, 67, 122);font-size: 16px;
@@ -54,5 +54,5 @@ pre {
  background-color: rgb(255, 255, 255)
 }
 h2{
-  text-align: center;
+  text-align: center; color:rgba(35, 37, 32, 0.658);
 }
