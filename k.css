@@ -45,11 +45,14 @@ pre {
   font-size: 15px;
 }
 .red{
-  color:rgb(177, 54, 54);
+  color:rgb(177, 54, 54);font-size: 12px;
 }
 .blue{
-  color:rgb(18, 67, 122);
+  color:rgb(18, 67, 122);font-size: 16px;
 }
 #a{
- background-color: rgb(94, 115, 124)
+ background-color: rgb(255, 255, 255)
+}
+h2{
+  text-align: center;
 }
