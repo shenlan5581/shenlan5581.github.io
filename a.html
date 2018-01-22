@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html > 
-<title>微服务 服务发现</title>
+<html >
+<head>
+
+ <title>微服务 服务发现</title>
+
+</head>
 <body>
   <pre>
-      <blue>
+        <h3>服务发现</h3>
+
+
+      <blue class = "blue">
     服务注册中心是服务发现的核心。
     它保存了各个可用服务实例的网络地址（IP Address和Port）。
     服务注册中心必须要有高可用性和实时更新功能。
       </blue>
-    <red>在使用客户端发现方式时，客户端通过查询服务注册中心，获取可用的服务的实际网络地址</red>
+    <red class="red">在使用客户端发现方式时，客户端通过查询服务注册中心，获取可用的服务的实际网络地址</red>
+
+    <red>在使用服务端发现方式时，客户端向load balancer 发送请求。load balancer 查询服务注册中心找到可用的服务，然后转发请求到该服务上</red>
 
   </pre>
  
