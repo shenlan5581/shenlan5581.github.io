@@ -4,7 +4,7 @@
 <html >
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
- <title>微服务 服务发现</title>
+ <title>  </title>
 </head>
 <style type="text/css">
    
@@ -26,15 +26,46 @@
    
 </style>
 <body id = "a">
- <h1>mysql 命令</h1>
+ <h1>mysql 命令  -  c 宏</h1>
 <pre>
 
 <l2> 启动   service mysql start</l2>
  
    ==============================
 <r1>sudo</r1>   mysql -uroot -p
+ 创建用户
+ 格式（方括号子句可选）
+
+ GRANT privileges [columns]              privileges 权限   列名
+ on item                                 数据库或表  .
+ to username [IDENTIFIED BY 'password']   
+ [REQYURE ssl_options]                   连接选项 
+ [WITH [GRANT OPTION | limit_iptions]]   其他选项
  
-   ==============================
+ 例：
+ GRANT  all
+ on *
+ to  k identified by 'password';
+ 
+ ================================
+ 开启远程连接
+ use mysql;
+ select user,host from user;
+ 显示：
+ +------+-----------+
+ | user | host      |
+ +------+-----------+
+ | k    | %         |
+ | root | %         |
+ | root | 127.0.0.1 |
+ | root | ::1       |
+ | root | ki        |
+ +------+-----------+
+ k 为新添加用户   
+ 更改用户的host 为 ‘%’
+ 重启
+ 
+ ==============================
 <b3>库</b3>
  show databases;      显示库 
 
@@ -50,7 +81,8 @@ create table server_table
 (   ID int unsigned not null auto_increment primary key, 
     service_name char(50) not null, 
     IP char(20)    not null, 
-    port char(10)  not null
+    port char(10)  not null,
+    date date      not null
 );
 +--------------+------------------+------+-----+---------+----------------+
 | Field        | Type             | Null | Key | Default | Extra          |
@@ -63,11 +95,12 @@ create table server_table
 
 desc server_table   显示表结构
 
-insert into server_finder values                插入
+
+
+insert into server_finder values           插入
     (NULL,'web','192.168.1.109','8080');
 
 select * from server_finder;                    查询所有信息
- 
 +----+--------------+---------------+------+
 | ID | service_name | IP            | port |
 +----+--------------+---------------+------+
@@ -79,6 +112,33 @@ select * from server_finder;                    查询所有信息
 
 
 
+
+
+
+
+===============   c/c++  宏 ==================
+
+#define   NAME "xingke"
+#define   NAME2  xingke 
+#define   SHOW1 NAME;  
+#define   SHOW2(name)    std::cout<<#name;      //cout<<"dd"
+#define   SHOW3(name)    std::cout<<name;       //cout<<server_name
+#define   SHOW4(X)       server_##X;            //server_+name
+#define   SHOW5(X)       10*X;                  //  10*5
+
+ // 1   无符号时 直接语句     替换
+ // 2#  将参数转化为字符串    替换
+ // 3## 连接标识符号后       替换
+ 
+int main()  
+{  
+       int  server_name=10;  
+
+       std::cout << SHOW1;     //  输出‘xingke"
+       SHOW2(dd);              //  输出’dd'; 
+       SHOW3(server_name);     //  输出 10;
+       std::cout<<SHOW4(name); //  输出 10;
+       std::cout<<SHOW5(5);    //  输出 50;
 
 </pre>
   
