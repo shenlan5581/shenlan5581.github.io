@@ -30,32 +30,53 @@
 <pre>
 
 <l2> 启动   service mysql start</l2>
-   (第一次使用） 
+ 
    ==============================
 <r1>sudo</r1>   mysql -uroot -p
-      enter password:< null > 
-
-设置用户密码
-mysql> SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘newpass’);       
-
-
-
-
-
-
-
+ 
    ==============================
 <b3>库</b3>
-<r2>show databases;</r2>    <l1> 显示库</l1>
+ show databases;      显示库 
 
-create database  <b1>name</b1> <l1> 创建库</l1>
-drop   database  <b1>name</b1> <l1> 删除库</l1>
+create database   name   创建库 
+drop   database   name   删除库 
 
-use  <b1>数据库名称</b1>       <l1> 切换库</l1>
+use   数据库名称       切换库 
+ 表 
+show tables;              显示表 
 
-<b3>表</b3>  
-<r2>show tables; </r2>           <l1> 显示表</l1>
-create tabl
+创建表
+create table server_table
+(   ID int unsigned not null auto_increment primary key, 
+    service_name char(50) not null, 
+    IP char(20)    not null, 
+    port char(10)  not null
+);
++--------------+------------------+------+-----+---------+----------------+
+| Field        | Type             | Null | Key | Default | Extra          |
++--------------+------------------+------+-----+---------+----------------+
+| ID           | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| service_name | char(50)         | NO   |     | NULL    |                |
+| IP           | char(20)         | NO   |     | NULL    |                |
+| port         | char(10)         | NO   |     | NULL    |                |
++--------------+------------------+------+-----+---------+----------------+
+
+desc server_table   显示表结构
+
+insert into server_finder values                插入
+    (NULL,'web','192.168.1.109','8080');
+
+select * from server_finder;                    查询所有信息
+ 
++----+--------------+---------------+------+
+| ID | service_name | IP            | port |
++----+--------------+---------------+------+
+|  1 | web          | 192.168.1.101 | 8080 |
+|  2 | http         | 192.168.1.102 | 20   |
++----+--------------+---------------+------+
+
+
+
 
 
 
