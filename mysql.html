@@ -25,7 +25,7 @@
     l3{color:rgb(219, 219, 219);font-size: 26px; font-weight:900;}
    
 </style>
-<body id = "a">
+<body>
  <h1>mysql 命令  -  c 宏</h1>
 <pre>
 
@@ -116,32 +116,70 @@ select * from server_finder;                    查询所有信息
 
 
 
+
+
+
+
 ===============   c/c++  宏 ==================
 
 #define   NAME "xingke"
 #define   NAME2  xingke 
 #define   SHOW1 NAME;  
-#define   SHOW2(name)    std::cout<<#name;      //cout<<"dd"
-#define   SHOW3(name)    std::cout<<name;       //cout<<server_name
+#define   SHOW2(name)    std::cout< <#name;      //cout< <"dd"
+#define   SHOW3(name)    std::cout< <name;       //cout< <server_name
 #define   SHOW4(X)       server_##X;            //server_+name
 #define   SHOW5(X)       10*X;                  //  10*5
 
  // 1   无符号时 直接语句     替换
  // 2#  将参数转化为字符串    替换
  // 3## 连接标识符号后       替换
+    (可尝试先  写出需要的语句 然后再转换为宏） 
  
 int main()  
 {  
        int  server_name=10;  
 
-       std::cout << SHOW1;     //  输出‘xingke"
-       SHOW2(dd);              //  输出’dd'; 
-       SHOW3(server_name);     //  输出 10;
-       std::cout<<SHOW4(name); //  输出 10;
-       std::cout<<SHOW5(5);    //  输出 50;
+       std::cout /< /< SHOW1;     //  输出‘xingke’ 
+       
+       SHOW2(dd);               //  输出/’dd; 
+       
+       SHOW3(server_name);      //  输出 10;
+       std::cout/< /<SHOW4(name); //  输出 10;
+       std::cout/< /<SHOW5(5);    //  输出 50;
+
+c++  重载         同名不同参  子类存在两个函数
+     重定义       虚函数  同名同参 不同实现    
+     重写         同名不同参 不同类中 （基类函数被隐藏）
+
+c++ 初始化区域  用于初始化 const 成员 引用  子类初始化基类的成员变量
+
+c++ 拷贝构造函数
+
+（重点：：  拷贝构造函数是对 构造函数的重载  当其参数为其本身时 
+          它被调用 通过参数中引用的对象 构建当前对象
+          主要用于指针的复杂操作时）
+class b
+{
+public:
+  b(int x){z=x;};                     // 构造
+  b(const b &x) { z = (x.z+1); };     // 拷贝构造
+  int z;      
+};             
+void  fun(b bs)
+{
+ cout< <bs.z< <endl; 
+}
+  
+int main()
+{
+    b  b1(10);
+    cout< < b1.z;  //输出10
+    fun(b1);       //输出11
+}
+ 
+</pre>
 
 </pre>
-  
 </body>
 </html>
  
