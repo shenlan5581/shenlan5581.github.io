@@ -81,7 +81,7 @@ class concretebuilderB  :public builder
     virtual  int builpart( /*  构建组建  D,C  */);   //实现2
     int  getresult();  //返回结果  
 };
-//  建造者流水线似的 构建所需组件
+//  像建造者流水线一样 构建所需组件
 //==========================建造者=======================
  class user
  {   
@@ -742,61 +742,62 @@ class app1 :public app
   //**************************************************************************************************** 11 visitor 访问着
   //表示一个作用于某对象结构中的各元素操作 它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作
   //将操作封装 成一个类
-  
-class A
-{
-
-
+class element;
+class visitor
+{ public:
+  virtual void  visitnodeA(element *a)=0;  
+  virtual void  visitnodeB(element *a)=0; 
 };
- class A
+  class v1 :public visitor
 {
-
-  
+  public: 
+  virtual void  visitnodeA(element *a){  cout<< "该函数获取到具体元素的指针,可定义新对这些元素的操作" ;}; // 访问者 得到了具体元素的指针 
+  virtual void  visitnodeB(element *a){                        };  
 };
-class A
+ class v2  :public visitor
 {
-
-  
-};
-class A
-{
-
-  
-};
-class A
-{
-
-  
-};
-class A
-{
-
-  
+public:
+    virtual void  visitnodeA(element *a){}; 
+    virtual void  visitnodeB(element *a){}; 
 };
 
+class element
+{
+public:
+   virtual  void accept(visitor *vv)=0;
+};
+class e1 : public element
+{
+public:
+   virtual  void accept(visitor * vv){  vv->visitnodeA(this); }  ;//实现接口调用不同的访问者  回调代入自身
+};
+class e2 : public element
+{
+public:
+   virtual  void accept(visitor &vv)=0;
+};
+/*
+#调用
+       visitor *s = new v1;
+       element *e = new e1;
+       e->accept(s);
+   
+    （重点思路  将对一类（被访问者）的  （对象操作） 独立封装为单独的 访问者对象）
+     该类对象提供接口调用同样的接口 执行（访问者的访问操作）<------ vv->visitnodeA(this);
+     访问着在该函数中（执行对该对象的各种操作）
+     被访问者可以使用不同的 访问者    访问者也可定义 不同的操作 且都是虚函数 自由空间极大
+     但这两个类依赖比较强 适用于提前需要定制好完善方案的框架
 
+  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ //**************************************23种设计模式******************************/
+ //只是以自己的理解 以简略代码的方式表述出来  
+ //算是看过一遍  要融会贯通  需要时日
  
 int main()
-{     
-    app * a= new app1;
-          a->openDoc();
-
-
+{
+ 
  return 0;
 }
+
+//2018-02-07 
