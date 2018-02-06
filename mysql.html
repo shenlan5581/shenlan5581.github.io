@@ -162,7 +162,7 @@ class b
 {
 public:
   b(int x){z=x;};                     // 构造
-  b(const b &x) { z = (x.z+1); };     // 拷贝构造
+  b(const b &x) { z = (x.z+1); }; -----// 拷贝构造(此函数决定如何构建 新对象）
   int z;      
 };             
 void  fun(b bs)
