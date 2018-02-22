@@ -1,1 +1,1 @@
-savepath =   /home/k/learn/data/tree/k_tree.txt
+savepath =./k_tree.txt

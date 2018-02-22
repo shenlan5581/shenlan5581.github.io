@@ -4,8 +4,6 @@
 #define _SER_H
 
 #include "main.h"
- 
-
 
 //***********配置文件相关**********
 void getcfg(char *path, char *p[]);

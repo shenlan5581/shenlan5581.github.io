@@ -12,31 +12,57 @@
      
     <top id = "top">   
         Learn
-      <div id = "auther"> 22542812@qq.com </div>
+       <span id = "auther"> 22542812@qq.com </span>
     </top>
 
+   <div id="left"> 
+      <h3>Some Pages</h3>
       <div class="content" >
-      <a href="https://www.zhihu.com/question/28557115">REST & RESTful</a>
+      <a href="https://www.zhihu.com/question/28557115">rest and restful</a>
       </div>
       <div class="content" > 
-      <a href="https://shenlan5581.github.io./page/linux_command.html">linux 常用命令</a> 
-      </div>  
-      <div class="content" > 
-      <a href="https://shenlan5581.github.io./page/find.html">服务发现</a> 
+      <a href="https://shenlan5581.github.io./page/find.html">Service </a> 
       </div>   
       <div class="content" > 
-      <a href="https://shenlan5581.github.io./page/mysql.html">mysql</a> 
+      <a href="https://shenlan5581.github.io./page/mysql.html">MYSQL</a> 
       </div>
       <div class="content" >
-      <a href="https://shenlan5581.github.io./page/class.html">类关系</a> 
+      <a href="https://shenlan5581.github.io./page/class.html">class</a> 
       </div>           
        <div class="content" >
-      <a href="https://shenlan5581.github.io./page/design.html">设计模式</a> 
-      </div>     
-       <div class="content" >
-      <a href="https://shenlan5581.github.io./learn/make/makefile.html">makefile</a> 
-      </div>            
-
+      <a href="https://shenlan5581.github.io./page/design.html">Design Patterns</a> 
+      </div>         
+</div>
+<div id="middle">
+    <h3>Note</h3>
+  <h4> C++   style</h4>
+ <pre>
+  * google c++ style    7. 命名约定* 
+    函数命名, 变量命名, 文件命名要有描述性; 少用缩写.
+    类型命名
+          类型名称的每个单词首字母均大写, 不包含下划线: MyExcitingClass, MyExcitingEnum.
+    变量命名
+          变量 (包括函数参数) 和数据成员名一律小写, 单词之间用下划线连接. 类的成员变量以下划线结尾, 但结构体的就不用, 
+          如: a_local_variable, a_struct_data_member, a_class_data_member_.
+    函数命名
+          常规函数使用大小写混合, 取值和设值函数则要求与变量名匹配: 
+          MyExcitingFunction(), MyExcitingMethod(), 
+          my_exciting_member_variable(), set_my_exciting_member_variable().
+</pre>
+<h4>make</h4> 
+<pre>
+make:
+main:main.o
+	echo "1111"  #（默认执行了 g++ -c -o main main.cpp
+	
+#  ^^^  上面的语言默认执行	g++ -c -o main main.cpp
+#  VVV  下面等于重新定义了默认的 编译操作	
+.cpp.o:
+	g++  -c     -o    $@ $<
+	echo "2222"
+# .cpp.o:  =====等价于====  %.o : %.cpp
+ </pre>
+</div>
  
        
 </body>
