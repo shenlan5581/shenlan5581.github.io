@@ -1,16 +1,10 @@
-//树相关声明   头文件
 #ifndef _TREE_H
 #define _TREE_H
-/*命令表     str == node name;
- *  创建节点      1 create 2 "str" 3CHI or SIB 4where
- *  遍历显示树    traverse
- *  退出         exit
- *  查找父节点    search parent of "str"
- *  删除         delete "str"
- * 
- * 
-*/
-/*****声明*****/
+
+
+
+#define cout(X) printf("%s",X)
+
 typedef struct treenode *node ;
 
 #define CHILD 1
@@ -27,26 +21,18 @@ union child_node {
         int _child;
 };
 union sibling_node {
- 
         node _nextsibling;
         int _sibling;
 };
-struct treenode
- 
-{
+struct treenode {
         char name[10];
         union child_node child_;
         union sibling_node sibling_;
-        /* struct treenode *fistchild;
-            int      child;
-    struct treenode *nextsibling;
-            int     sibling; */
 };
 
 //队列
 typedef struct queue Q;
-struct queue
-{ //节点队列
+struct queue {
         node N;
         Q *next;
 } * front, *rear;
@@ -71,13 +57,12 @@ int save_tree(node tree, char *path);
 void save_node(int file);
 //保存节点（递归）
 void transformation(node node);
-//转换节点 指针-偏移量
+//转换节点 指针->偏移量
 node  createfromfile(char *path);
 //重建树
 node  createnodefromfile(int file);
 //重建树 节点
 void operatorbycommand(node tree);
-
 //执行命令
-#include "tree.c"
+
 #endif

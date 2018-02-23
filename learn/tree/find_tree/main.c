@@ -1,8 +1,5 @@
-
 #include "k.h"
-
 #include "tree.h"
-
 #include "../queue/queue.h"
 #include "display_tree.h"
 
@@ -19,9 +16,4 @@ int main()
   
    traverse2(t);    
    traverse(t);
- 
-
-
-
-
 }

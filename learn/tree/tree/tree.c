@@ -1,17 +1,22 @@
-//树的相关操作函数
-#ifndef _TREE_C
-#define _TREE_C
+/*
+*
+*/
 
- 
+#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <string.h>
+
+#include "ser.h"
 #include "tree.h"
-#include "main.h"
+
+extern struct  config conf;
 
 int create(node parent, const char *content, int X)
 {
-    if (parent == NULL && X != ROOT)
+  if (parent == NULL && X != ROOT)
     {
         cout("未查找到相关节点\n");
-
         return -1;
     }
 
@@ -429,4 +434,3 @@ void operatorbycommand(node tree)
     }
 }
 
-#endif

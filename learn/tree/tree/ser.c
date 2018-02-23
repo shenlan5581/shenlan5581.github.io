@@ -1,10 +1,6 @@
-// 相关函数
-
-#ifndef _SER_C
-#define _SER_C
 
 #include "ser.h"
-//********配置相关*********
+
 void move_space(char *str)
 {
   int i;
@@ -109,18 +105,18 @@ void getcfg(char *path, char *p[])
   }
 }
 
-void init_cfg(struct _ser *_ser) //初始化
+void init_cfg(struct config *config) //初始化
 {
   char *re[20]; //此处申请10个地址空间存储参数
 
-  getcfg("/home/k/learn/data/tree/conf.txt", re); //当前文件夹
+  getcfg("./conf.txt", re); //当前文件夹
   char **p = re;
   for (;;)
   {
 
     if ((strcmp(*p, "savepath") == 0))
     {
-      strcpy(_ser->savepath, *(p + 1));
+      strcpy(config->savepath, *(p + 1));
       break;
     }
     p += 2;
@@ -326,4 +322,3 @@ void movespaceofhard(char *buf)
   }
 }
 
-#endif
