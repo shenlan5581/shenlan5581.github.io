@@ -36,35 +36,30 @@
 <div id="middle">
     <h3>Note</h3>
   <h4> C++   style</h4>
- <p> 
-   * google c++ style    7. 命名约定* 
-    函数命名, 变量命名, 文件命名要有描述性; 少用缩写.
-    类型命名
-          类型名称的每个单词首字母均大写, 不包含下划线: MyExcitingClass, MyExcitingEnum.
-    变量命名
-          变量 (包括函数参数) 和数据成员名一律小写, 单词之间用下划线连接. 
-          类的成员变量以下划线结尾, 但结构体的就不用, 
-          如: a_local_variable, a_struct_data_member, a_class_data_member_.
-    函数命名
-          常规函数使用大小写混合, 取值和设值函数则要求与变量名匹配: 
-          MyExcitingFunction(), MyExcitingMethod(), 
-          my_exciting_member_variable(), set_my_exciting_member_variable().
-</p>
+   * google c++ style    7. 命名约定* <br>
+    函数命名, 变量命名, 文件命名要有描述性; 少用缩写.<br>
+    类型命名<br>
+   类型名称的每个单词首字母均大写, 不包含下划线: MyExcitingClass, MyExcitingEnum.<br>
+    变量命名<br>
+          变量 (包括函数参数) 和数据成员名一律小写, 单词之间用下划线连接. <br>
+          类的成员变量以下划线结尾, 但结构体的就不用, <br>
+          如: a_local_variable, a_struct_data_member, a_class_data_member_.<br>
+    函数命名<br>
+          常规函数使用大小写混合, 取值和设值函数则要求与变量名匹配: <br>
+          MyExcitingFunction(), MyExcitingMethod(), <br>
+          my_exciting_member_variable(), set_my_exciting_member_variable().<br>
       <h4>make</h4> 
- 
-make:
-main:main.o
-	echo "1111"  #（默认执行了 g++ -c -o main main.cpp
+main:main.o<br>
+	echo "1111"  #（默认执行了 g++ -c -o main main.cpp<br>
 	
-#  ^^^  上面的语言默认执行	g++ -c -o main main.cpp
-#  VVV  下面等于重新定义了默认的 编译操作	
-.cpp.o:
-	g++  -c     -o    $@ $<
-	echo "2222"
-# .cpp.o:  =====等价于====  %.o : %.cpp
+#     上面的语言默认执行	g++ -c -o main main.cpp<br>
+#     下面等于重新定义了默认的 编译操作<br>	
+.cpp.o:<br>
+	g++  -c     -o    $@ $<<br>
+	echo "2222"<br>
+# .cpp.o:  =====等价于====  %.o : %.cpp<br>
  
 <h4>git</h4>
-<hr>
 git push origin 本地                      ：创建远程分支 <br>
 git checkout -b 本地 origin/远程     : 从远程下载一个本地没有的分支 <br>
 git fetch origin 远程                      ：   本地<br>
