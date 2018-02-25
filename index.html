@@ -42,7 +42,8 @@
     类型命名
           类型名称的每个单词首字母均大写, 不包含下划线: MyExcitingClass, MyExcitingEnum.
     变量命名
-          变量 (包括函数参数) 和数据成员名一律小写, 单词之间用下划线连接. 类的成员变量以下划线结尾, 但结构体的就不用, 
+          变量 (包括函数参数) 和数据成员名一律小写, 单词之间用下划线连接. 
+          类的成员变量以下划线结尾, 但结构体的就不用, 
           如: a_local_variable, a_struct_data_member, a_class_data_member_.
     函数命名
           常规函数使用大小写混合, 取值和设值函数则要求与变量名匹配: 
@@ -62,6 +63,16 @@ main:main.o
 	echo "2222"
 # .cpp.o:  =====等价于====  %.o : %.cpp
  </pre>
+
+<h4>git</h4> 
+<pre>
+git push origin 本地                ：创建远程分支
+git checkout -b 本地 origin/远程    : 从远程下载一个本地没有的分支
+git fetch origin 远程：本地
+git push origin :远程               ：删除远程分支
+git push origin  --delete 远程      ：删除远程分支
+
+</pre>
 </div>
  
        
