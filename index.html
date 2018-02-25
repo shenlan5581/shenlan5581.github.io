@@ -36,8 +36,8 @@
 <div id="middle">
     <h3>Note</h3>
   <h4> C++   style</h4>
- <pre>
-  * google c++ style    7. 命名约定* 
+ <p> 
+   * google c++ style    7. 命名约定* 
     函数命名, 变量命名, 文件命名要有描述性; 少用缩写.
     类型命名
           类型名称的每个单词首字母均大写, 不包含下划线: MyExcitingClass, MyExcitingEnum.
@@ -49,9 +49,9 @@
           常规函数使用大小写混合, 取值和设值函数则要求与变量名匹配: 
           MyExcitingFunction(), MyExcitingMethod(), 
           my_exciting_member_variable(), set_my_exciting_member_variable().
-</pre>
-<h4>make</h4> 
-<pre>
+</p>
+      <h4>make</h4> 
+ 
 make:
 main:main.o
 	echo "1111"  #（默认执行了 g++ -c -o main main.cpp
@@ -62,17 +62,17 @@ main:main.o
 	g++  -c     -o    $@ $<
 	echo "2222"
 # .cpp.o:  =====等价于====  %.o : %.cpp
- </pre>
+ 
 
 <h4>git</h4> 
-<pre>
+ 
 git push origin 本地                ：创建远程分支
 git checkout -b 本地 origin/远程    : 从远程下载一个本地没有的分支
 git fetch origin 远程：本地
 git push origin :远程               ：删除远程分支
 git push origin  --delete 远程      ：删除远程分支
 
-</pre>
+ 
 </div>
  
        
