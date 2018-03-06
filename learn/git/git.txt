@@ -1,0 +1,21 @@
+git push origin 本地                      ：创建远程分支 <br>
+git checkout -b 本地 origin/远程     : 从远程下载一个本地没有的分支 <br>
+git fetch origin 远程                      ：   本地<br>
+git push origin :远程                     ：删除远程分支<br>
+git push origin  --delete 远程         ：删除远程分支<br>
+
+git reset  --hard 3h3ew3       回滚
+
+
+标签 （对应每次提交）
+
+git tag -a v1.4 -m 'my version 1.4' 创建标签（带说明）
+
+git tag  显示标签所有标签
+
+git show  <名称> 显示 该标签信息（提交编号，日期）
+
+git tag -a <tagname> -m "runoob.com标签"  指定标签信息
+
+ git push origin --tags       推送远程
+

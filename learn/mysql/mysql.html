@@ -1,0 +1,79 @@
+
+ mysql 命令 
+ 启动   service mysql start 
+   ==============================
+sudo   mysql -uroot -p
+ 创建用户
+ 格式（方括号子句可选）
+
+ GRANT privileges [columns]              privileges 权限   列名
+ on item                                 数据库或表  .
+ to username [IDENTIFIED BY 'password']   
+ [REQYURE ssl_options]                   连接选项 
+ [WITH [GRANT OPTION | limit_iptions]]   其他选项
+ 
+ 例：
+ GRANT  all
+ on *
+ to  k identified by 'password';
+ 
+ ================================
+ 开启远程连接
+ use mysql;
+ select user,host from user;
+ 显示：
+ +------+-----------+
+ | user | host      |
+ +------+-----------+
+ | k    | %         |
+ | root | %         |
+ | root | 127.0.0.1 |
+ | root | ::1       |
+ | root | ki        |
+ +------+-----------+
+ k 为新添加用户   
+ 更改用户的host 为 ‘%’
+ 重启
+ 
+ ==============================
+库
+show databases;      显示库 
+
+create database   name   创建库 
+drop   database   name   删除库 
+
+use   数据库名称       切换库 
+ 表 
+show tables;              显示表 
+
+创建表
+create table server_table
+(   ID int unsigned not null auto_increment primary key, 
+    service_name char(50) not null, 
+    IP char(20)    not null, 
+    port char(10)  not null,
+    date date      not null
+);
++--------------+------------------+------+-----+---------+----------------+
+| Field        | Type             | Null | Key | Default | Extra          |
++--------------+------------------+------+-----+---------+----------------+
+| ID           | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| service_name | char(50)         | NO   |     | NULL    |                |
+| IP           | char(20)         | NO   |     | NULL    |                |
+| port         | char(10)         | NO   |     | NULL    |                |
++--------------+------------------+------+-----+---------+----------------+
+
+desc server_table   显示表结构
+
+insert into server_finder values           插入
+    (NULL,'web','192.168.1.109','8080');
+
+select * from server_finder;        查询所有信息
+ 
+delete from service_table;          删除所有          
+replace 语法：
+replace replace into service_table
+ (ID,service_name,IP,port)values('34','web','125','80');
+(如果 表中有相同的记录（注意必须有主键并且包含主键) 则删除老记录插入新的
+ 负责 等同于 insert）
+

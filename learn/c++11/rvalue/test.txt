@@ -1,0 +1,34 @@
+c11 右值引用
+
+class k{
+public:
+    k(){ cout<<"canstruct\n";a=5;}
+    //k( k&a){ cout<<"copy\n";}
+    //k(k&&a){ cout<<"move\n";a.a = 2;}
+    //k operator =(k a ){ cout<<"==\n";return a;} 
+	  ~k(){cout<<"delete\n";}
+    int a;
+};
+***********************
+k fun (k a)
+{ 
+ a.a = 6;
+ cout<<"T"<<endl;
+return a ;  
+}
+***********************
+int main() {
+k a;
+k &&c =fun((a));
+cout<<c.a;
+cout<<"end\n";
+}
+输出：
+canstruct
+T
+delete
+6end    
+delete
+delete
+
+

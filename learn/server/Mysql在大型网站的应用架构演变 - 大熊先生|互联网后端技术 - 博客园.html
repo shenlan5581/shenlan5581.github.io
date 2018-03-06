@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mysql在大型网站的应用架构演变 - 大熊先生|互联网后端技术 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=-hy83QNg62d4qYibixJzxMJkbf1P9fTBlqv7SK5zVL01"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/iMetro_HD/bundle-iMetro_HD.css?v=cDVgAMQ7FTtxrKvup-MCLDNCyny4xFuA__ZZf74gd_s1"/>
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/iMetro_HD/bundle-iMetro_HD-mobile.css?v=VYvBZbXPqDcuZyq3IqW6JPMJ-xBqKhDr2P6dzCO3y041"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/Creator/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/Creator/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/Creator/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/scripts/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">var currentBlogApp = 'Creator', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="/bundles/blog-common.js?v=O-NTEmnhjbG7lSYLc3yeqkrVxfMJyY9iXf4xyjlKikw1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<div id="page_begin_html"></div><script>load_page_begin_html();</script>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/Creator/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/Creator/">大熊先生| 关注互联网后端技术</a></h1>
+<h2>将编程作为一项终生事业.并乐此不疲.
+简单并且快乐着...</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/Creator/">首页</a></li>
+<li></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%A4%A7%E7%86%8A%E5%85%88%E7%94%9F%7C%E4%BA%92%E8%81%94%E7%BD%91%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/Creator/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/Creator/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 82&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 614</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/Creator/p/3776110.html">Mysql在大型网站的应用架构演变</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="font-family: 宋体;">原创文章，转载请注明： 转载自http://www.cnblogs.com/Creator/</span><br /><span style="font-family: 宋体;">本文链接地址: <a href="http://www.cnblogs.com/Creator/p/3776110.html">Mysql在大型网站的应用架构演变</a></span></p>
+<p><strong>本文已经被多处转载，包括CSDN推荐以及码农周刊等等,阅读数超过50w+</strong>,回流到我博客流量的还是比较少,不过这不重要, 后续会分享更多技术，尽量试图把自己理解的东西描述出来(很多时候自己的理解是90分，可是描述出来就只有60分了)</p>
+<p>CSDN的转载 ：http://www.csdn.net/article/2014-06-10/2820160</p>
+<p>伯乐在线的转载： http://blog.jobbole.com/70844/</p>
+<p>当然还有大量转载没有写明出处的...</p>
+<p>&nbsp;</p>
+<h1><span style="font-family: 宋体;">写在最前:</span></h1>
+<p><span style="font-family: 宋体;">本文主要描述在网站的不同的并发访问量级下，Mysql架构的演变</span></p>
+<h2><span style="font-family: 宋体;">可扩展性</span></h2>
+<p><span style="font-family: 宋体;">架构的可扩展性往往和并发是息息相关，没有并发的增长，也就没有必要做高可扩展性的架构，这里对可扩展性进行简单介绍一下，常用的扩展手段有以下两种</span><br /><span style="font-family: 宋体;"><strong>Scale-up :</strong>&nbsp; 纵向扩展，通过替换为更好的机器和资源来实现伸缩，提升服务能力</span><br /><span style="font-family: 宋体;"><strong>Scale-out :</strong> 横向扩展,&nbsp; 通过加节点（机器）来实现伸缩，提升服务能力</span><br /><span style="font-family: 宋体;">对于互联网的高并发应用来说，无疑<strong>Scale out才是出路</strong>，通过纵向的买更高端的机器一直是我们所避讳的问题，也不是长久之计，在scale out的理论下，可扩展性的理想状态是什么？</span></p>
+<h2><br /><span style="font-family: 宋体;">可扩展性的理想状态</span></h2>
+<p><span style="font-family: 宋体;">一个服务，当面临更高的并发的时候，<strong>能够通过简单增加机器来提升服务支撑的并发度，且增加机器过程中对线上服务无影响(no down time)，这就是可扩展性的理想状态！</strong></span></p>
+<p>&nbsp;</p>
+<h1><span style="font-family: 宋体;">架构的演变</span></h1>
+<h2><span style="font-family: 宋体;">V1.0&nbsp; 简单网站架构</span></h2>
+<p><span style="font-family: 宋体;">一个简单的小型网站或者应用背后的架构可以非常简单,&nbsp; 数据存储只需要一个mysql instance就能满足数据读取和写入需求（这里忽略掉了数据备份的实例），处于这个时间段的网站，一般会把所有的信息存到一个database instance里面。</span></p>
+<p><span style="font-family: 宋体;"><img src="https://images0.cnblogs.com/i/119471/201406/081233121303172.png" alt="" /></span></p>
+<p><span style="font-family: 宋体;"><strong>在这样的架构下，我们来看看数据存储的瓶颈是什么</strong>？</span><br /><span style="font-family: 宋体;">1.数据量的总大小&nbsp; 一个机器放不下时</span><br /><span style="font-family: 宋体;">2.数据的索引（B+ Tree）一个机器的内存放不下时</span><br /><span style="font-family: 宋体;">3.访问量(读写混合)一个实例不能承受</span><br /><br /><span style="font-family: 宋体;">只有当以上3件事情任何一件或多件满足时，我们才需要考虑往下一级演变。 从此我们可以看出，事实上对于很多小公司小应用，这种架构已经足够满足他们的需求了，初期数据量的准确评估是杜绝过度设计很重要的一环，毕竟没有人愿意为不可能发生的事情而浪费自己的经历。</span></p>
+<p><br /><span style="font-family: 宋体;">这里简单举个我的例子，对于用户信息这类表 （3个索引），16G内存能放下大概2000W行数据的索引，简单的读和写混合访问量3000/s左右没有问题，你的应用场景是否</span></p>
+<h2><span style="font-family: 宋体;">V2.0 垂直拆分</span></h2>
+<p><span style="font-family: 宋体;">一般当V1.0 遇到瓶颈时，首先最简便的拆分方法就是垂直拆分，何谓垂直？就是从业务角度来看，将关联性不强的数据拆分到不同的instance上，从而达到消除瓶颈的目标。以图中的为例，将用户信息数据，和业务数据拆分到不同的三个实例上。对于重复读类型比较多的场景，我们还可以加一层cache，来减少对DB的压力。</span></p>
+<p><span style="font-family: 宋体;"><img src="https://images0.cnblogs.com/i/119471/201406/081234588802292.png" alt="" /></span></p>
+<p><span style="font-family: 宋体;"><strong>在这样的架构下，我们来看看数据存储的瓶颈是什么？</strong></span></p>
+<p><span style="font-family: 宋体;">1.单实例单业务 依然存在V1.0所述瓶颈</span></p>
+<p><span style="font-family: 宋体;">遇到瓶颈时可以考虑往本文更高V版本升级, 若是读请求导致达到性能瓶颈可以考虑往V3.0升级， 其他瓶颈考虑往V4.0升级</span></p>
+<p>&nbsp;</p>
+<h2><span style="font-family: 宋体;">V3.0&nbsp; 主从架构</span></h2>
+<p><span style="font-family: 宋体;">此类架构主要解决V2.0架构下的读问题，通过给Instance挂数据实时备份的思路来迁移读取的压力，在Mysql的场景下就是通过主从结构，主库抗写压力，通过从库来分担读压力，对于写少读多的应用，V3.0主从架构完全能够胜任</span></p>
+<p><span style="font-family: 宋体;"><img src="https://images0.cnblogs.com/i/119471/201406/081236133338181.png" alt="" /></span></p>
+<p><span style="font-family: 宋体;"><strong>在这样的架构下，我们来看看数据存储的瓶颈是什么？</strong></span><br /><span style="font-family: 宋体;">1.写入量主库不能承受</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: 宋体;">作者微博:&nbsp;<a href="http://weibo.com/zealotyin" target="_blank">http://weibo.com/zealotyin</a></span></p>
+<p>&nbsp;</p>
+<h2><span style="font-family: 宋体;">V4.0&nbsp; 水平拆分</span></h2>
+<p><span style="font-family: 宋体;">对于V2.0 V3.0方案遇到瓶颈时，都可以通过水平拆分来解决，水平拆分和垂直拆分有较大区别，垂直拆分拆完的结果，在一个实例上是拥有全量数据的，而水平拆分之后，任何实例都只有全量的1/n的数据，以下图Userinfo的拆分为例，将userinfo拆分为3个cluster，每个cluster持有总量的1/3数据，3个cluster数据的总和等于一份完整数据（注：这里不再叫单个实例 而是叫一个cluster 代表包含主从的一个小mysql集群）</span></p>
+<p><span style="font-family: 宋体;"><img src="https://images0.cnblogs.com/i/119471/201406/081237216611673.png" alt="" /></span></p>
+<p>&nbsp;</p>
+<h3><span style="font-family: 宋体;">数据如何路由？</span></h3>
+<h3><span style="font-family: 宋体;">1.Range拆分</span></h3>
+<p><span style="font-family: 宋体;">&nbsp;sharding key按连续区间段路由，一般用在有严格自增ID需求的场景上，如Userid, Userid Range的小例子：以userid 3000W 为Range进行拆分&nbsp;&nbsp; 1号cluster&nbsp; userid 1-3000W&nbsp; 2号cluster&nbsp; userid&nbsp;&nbsp; 3001W-6000W</span></p>
+<h3><span style="font-family: 宋体;">2.List拆分</span></h3>
+<p><span style="font-family: 宋体;">List拆分与Range拆分思路一样，都是通过给不同的sharding key来路由到不同的cluster,但是具体方法有些不同,List主要用来做sharding key不是连续区间的序列落到一个cluster的情况，如以下场景：</span><br /><span style="font-family: 宋体;">假定有20个音像店，分布在4个有经销权的地区，如下表所示： </span></p>
+<div>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>
+<p style="text-align: left;"><span style="font-family: 宋体;">地区</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+<td>
+<p><span style="font-family: 宋体;">商店ID 号</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td>
+<p><span style="font-family: 宋体;">北区</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+<td>
+<p><span style="font-family: 宋体;">3, 5, 6, 9, 17</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td>
+<p><span style="font-family: 宋体;">东区</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+<td>
+<p><span style="font-family: 宋体;">1, 2, 10, 11, 19, 20</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td>
+<p><span style="font-family: 宋体;">西区</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+<td>
+<p><span style="font-family: 宋体;">4, 12, 13, 14, 18</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+<tr>
+<td>
+<p><span style="font-family: 宋体;">中心区</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+<td>
+<p><span style="font-family: 宋体;">7, 8, 15, 16</span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<p><br /><span style="font-family: 宋体;">业务希望能够把一个地区的所有数据组织到一起来搜索，这种场景List拆分可以轻松搞定</span></p>
+<h3><span style="font-family: 宋体;">3.Hash拆分</span></h3>
+<p><span style="font-family: 宋体;">通过对sharding key 进行哈希的方式来进行拆分，常用的哈希方法有除余,字符串哈希等等，除余如按userid%n 的值来决定数据读写哪个cluster，其他哈希类算法这里就不细展开讲了。</span></p>
+<h3><br /><span style="font-family: 宋体;">数据拆分后引入的问题：</span></h3>
+<p><span style="font-family: 宋体;">数据水平拆分引入的问题主要是只能通过sharding key来读写操作，例如以userid为sharding key的切分例子，读userid的详细信息时，一定需要先知道userid,这样才能推算出再哪个cluster进而进行查询，假设我需要按username进行检索用户信息，需要引入额外的反向索引机制（类似HBASE二级索引），如在redis上存储username-&gt;userid的映射，以username查询的例子变成了先通过查询username-&gt;userid，再通过userid查询相应的信息。</span><br /><span style="font-family: 宋体;">实际上这个做法很简单，但是我们不要忽略了一个额外的隐患，那就是数据不一致的隐患。存储在redis里的username-&gt;userid和存储在mysql里的userid-&gt;username必须需要是一致的，这个保证起来很多时候是一件比较困难的事情，举个例子来说，对于修改用户名这个场景，你需要同时修改redis和mysql,这两个东西是很难做到事务保证的,如mysql操作成功 但是redis却操作失败了（分布式事务引入成本较高）,对于互联网应用来说，可用性是最重要的，一致性是其次，所以能够容忍小量的不一致出现. 毕竟从占比来说，这类的不一致的比例可以微乎其微到忽略不计（一般写更新也会采用mq来保证直到成功为止才停止重试操作）</span><br /><br /><span style="font-family: 宋体;"><strong>在这样的架构下，我们来看看数据存储的瓶颈是什么？</strong></span><br /><span style="font-family: 宋体;">在这个拆分理念上搭建起来的架构，理论上不存在瓶颈（sharding key能确保各cluster流量相对均衡的前提下),不过确有一件恶心的事情，那就是cluster扩容的时候重做数据的成本，如我原来有3个cluster，但是现在我的数据增长比较快，我需要6个cluster，那么我们需要将每个cluster 一拆为二，一般的做法是</span><br /><span style="font-family: 宋体;">1.摘下一个slave,停同步, </span><br /><span style="font-family: 宋体;">2.对写记录增量log（实现上可以业务方对写操作 多一次写持久化mq&nbsp; 或者mysql主创建trigger记录写 等等方式）</span><br /><span style="font-family: 宋体;">3.开始对静态slave做数据, 一拆为二</span><br /><span style="font-family: 宋体;">4.回放增量写入,直到追上的所有增量,与原cluster基本保持同步</span><br /><span style="font-family: 宋体;">5.写入切换，由原3 cluster 切换为6cluster </span><br /><br /><span style="font-family: 宋体;">有没有类似飞机空中加油的感觉，这是一个脏活，累活，容易出问题的活，为了避免这个，我们一般在最开始的时候，设计足够多的sharding cluster来防止可能的cluster扩容这件事情</span><br /><br /></p>
+<h2><span style="font-family: 宋体;">V5.0&nbsp; 云计算 腾飞（云数据库）&nbsp; <br /></span></h2>
+<p><span style="font-family: 宋体;">云计算现在是各大IT公司内部作为节约成本的一个突破口，对于数据存储的mysql来说，如何让其成为一个saas（Software as a Service）是关键点。在MS的官方文档中，把构建一个足够成熟的SAAS(MS简单列出了SAAS应用的4级成熟度)所面临的3个主要挑战：<strong>可配置性，可扩展性，多用户存储结构设计称为"three headed monster"</strong>. 可配置性和多用户存储结构设计在Mysql saas这个问题中并不是特别难办的一件事情，所以这里重点说一下可扩展性。</span><br /><br /><span style="font-family: 宋体;">Mysql作为一个saas服务，在架构演变为V4.0之后，依赖良好的sharding key设计, 已经不再存在扩展性问题，只是他在面对扩容缩容时，有一些脏活需要干，而作为saas,并不能避免扩容缩容这个问题，所以只要能把V4.0的脏活变成 <strong>1. 扩容缩容对前端APP透明(业务代码不需要任何改动)&nbsp; 2.扩容缩容全自动化且对在线服务无影响</strong> 那么他就拿到了作为Saas的门票.</span></p>
+<p><span style="font-family: 宋体;"><img src="https://images0.cnblogs.com/i/119471/201406/081243295522113.png" alt="" /></span></p>
+<p><span style="font-family: 宋体;">对于架构实现的关键点，<strong>需要满足对业务透明，扩容缩容对业务不需要任何改动</strong>，那么就必须eat our own dog food，在你mysql saas内部解决这个问题，一般的做法是我们需要引入一个Proxy,Proxy来解析sql协议，按sharding key 来寻找cluster, 判断是读操作还是写操作来请求主 或者 从，这一切内部的细节都由proxy来屏蔽。</span><br /><span style="font-family: 宋体;">这里借淘宝的图来列举一下proxy需要干哪些事情</span></p>
+<p><span style="font-family: 宋体;"><img src="https://images0.cnblogs.com/i/119471/201406/081244458496470.jpg" alt="" /></span></p>
+<p><span style="font-family: 宋体;">百度公开的技术方案中也有类似的解决方案，见文章最后资料部分链接</span><br /><br /><br /><span style="font-family: 宋体;">对于架构实现的关键点，<strong>扩容缩容全自动化且对在线服务无影响</strong>； 扩容缩容对应到的数据操作即为数据拆分和数据合并，要做到完全自动化有非常多不同的实现方式，总体思路和V4.0介绍的瓶颈部分有关，目前来看这个问题比较好的方案就是实现一个伪装slave的sync slave, 解析mysql同步协议，然后实现数据拆分逻辑，把全量数据进行拆分。具体架构见下图：<br /></span></p>
+<p><span style="font-family: 宋体;"><img src="https://images0.cnblogs.com/i/119471/201406/102113123271067.jpg" alt="" /></span></p>
+<p><span style="font-family: 宋体;">其中Sync slave对于Original Master来说，和一个普通的Mysql Slave没有任何区别，也不需要任何额外的区分对待。<strong>需要扩容/缩容时，挂上一个Sync slave,开始全量同步+增量同步，等待一段时间追数据</strong>。以扩容为例，若扩容后的服务和扩容前数据已经基本同步了，这时候如何做到切换对业务无影响？ 其实关键点还是在引入的proxy,这个问题转换为了如何让proxy做热切换后端的问题。这已经变成一个非常好处理的问题了.</span><br /><br /><span style="font-family: 宋体;">另外值得关注的是：2014年5月28日&mdash;&mdash;为了满足当下对Web及云应用需求，<strong>甲骨文宣布推出MySQL Fabric</strong>，在对应的资料部分我也放了很多Fabric的资料，有兴趣的可以看看，说不定会是以后的一个解决云数据库扩容缩容的手段</span><br /><br /></p>
+<h2>V more ?</h2>
+<p>等待革命...</p>
+<p>&nbsp;</p>
+<p>作者微博:&nbsp;<a href="http://weibo.com/zealotyin" target="_blank">http://weibo.com/zealotyin</a></p>
+<h2><span style="font-family: 宋体;">其他资料</span></h2>
+<p><span style="font-family: 宋体;">百度Dbproxy设计&nbsp;&nbsp; http://tech.it168.com/a2012/0413/1337/000001337034.shtml</span><br /><span style="font-family: 宋体;">淘宝RDS 云数据库设计： http://blog.csdn.net/ywh147/article/details/8954625&nbsp;&nbsp;&nbsp;&nbsp; http://www.infoq.com/cn/news/2012/10/taobao-ump</span><br /><span style="font-family: 宋体;">Mysql&nbsp; Fabric</span><br /><span style="font-family: 宋体;">http://mysqlmusings.blogspot.jp/2013/09/brief-introduction-to-mysql-fabric.html</span><br /><span style="font-family: 宋体;">http://vnwrites.blogspot.jp/2013/09/mysqlfabric-sharding-introduction.html</span><br /><span style="font-family: 宋体;">http://vnwrites.blogspot.in/2013/09/mysqlfabric-sharding-example.html</span><br /><span style="font-family: 宋体;">http://vnwrites.blogspot.in/2013/09/mysqlfabric-sharding-migration.html</span><br /><span style="font-family: 宋体;">http://vnwrites.blogspot.jp/2013/09/mysqlfabric-sharding-maintenance.html</span><br /><br /></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2014-06-08 12:53</span> <a href='http://www.cnblogs.com/Creator/'>大熊先生|互联网后端技术</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=3776110" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(3776110);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=67679,cb_entryId=3776110,cb_blogApp=currentBlogApp,cb_blogUserGuid='561e2845-502e-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2014/6/8 12:53:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'></div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2018 大熊先生|互联网后端技术
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script src="https://s11.cnzz.com/stat.php?id=2678055&web_id=2678055&show=pic" language="JavaScript"></script>
+<!--PageEndHtml Block End-->
+</body>
+</html>

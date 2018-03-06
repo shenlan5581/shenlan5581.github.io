@@ -1,0 +1,565 @@
+
+k fun (k a)
+{ 
+ a.a = 6;
+return a ;  
+}
+int main() {
+k a;
+fun((a));
+cout<<a.a;
+cout<<"end\n";
+}
+ canstruct                            一次构造
+delete
+delete
+5end
+delete                                  三次析构
+00000000000009b0 <_Z3fun1k>:
+ 9b0:	55                   	push   %rbp
+ 9b1:	48 89 e5             	mov    %rsp,%rbp
+ 9b4:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)                 new
+ 9b8:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)               a
+ 9bc:	48 8b 45 f0          	mov    -0x10(%rbp),%rax      
+ 9c0:	c7 00 06 00 00 00    	movl   $0x6,(%rax)                  a 赋值
+ 9c6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax                
+ 9ca:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx                a    
+ 9ce:	8b 12                	mov    (%rdx),%edx                          取a 的值 复制  edx 
+ 9d0:	89 10                	mov    %edx,(%rax)                          a 的值 复制给  new指向的地址
+ 9d2:	48 8b 45 f8          	mov    -0x8(%rbp),%rax                 返回该地址 
+ 9d6:	5d                   	pop    %rbp
+ 9d7:	c3                   	retq   
+
+00000000000009d8 <main>:
+ 9d8:	55                   	push   %rbp
+ 9d9:	48 89 e5             	mov    %rsp,%rbp
+ 9dc:	53                   	push   %rbx
+ 9dd:	48 83 ec 18          	sub    $0x18,%rsp
+ 9e1:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ 9e5:	48 89 c7             	mov    %rax,%rdi
+ 9e8:	e8 e7 00 00 00       	callq  ad4 <_ZN1kC1Ev>
+ 9ed:	8b 45 e4             	mov    -0x1c(%rbp),%eax                  构造  -0x1c  a
+ 9f0:	89 45 ec              	mov    %eax,-0x14(%rbp)                   a 复制  -0x14   复制一份带入函数
+ 9f3:	48 8d 45 e8          	lea    -0x18(%rbp),%rax                   -0x18 新值
+ 9f7:	48 8d 55 ec          	lea    -0x14(%rbp),%rdx
+ 9fb:	48 89 d6             	mov    %rdx,%rsi                               复制的  a
+ 9fe:	48 89 c7             	mov    %rax,%rdi                               新址
+ a01:	e8 aa ff ff ff       	callq  9b0 <_Z3fun1k> 
+ a06:	48 8d 45 e8          	lea    -0x18(%rbp),%rax                 
+ a0a:	48 89 c7             	mov    %rax,%rdi                              
+ a0d:	e8 ee 00 00 00       	callq  b00 <_ZN1kD1Ev>               析构返回值 -0x18new  右值
+ a12:	48 8d 45 ec          	lea    -0x14(%rbp),%rax                 
+ a16:	48 89 c7             	mov    %rax,%rdi
+ a19:	e8 e2 00 00 00       	callq  b00 <_ZN1kD1Ev>               析构  -0x14 a 的复制
+ a1e:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+ a21:	89 c6                	mov    %eax,%esi
+ a23:	48 8d 3d 36 16 20 00 	lea    0x201636(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a2a:	e8 f1 fd ff ff       	callq  820 <_ZNSolsEi@plt>
+ a2f:	48 8d 35 92 01 00 00 	lea    0x192(%rip),%rsi        # bc8 <_ZStL19piecewise_construct+0x14>
+ a36:	48 8d 3d 23 16 20 00 	lea    0x201623(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a3d:	e8 0e fe ff ff       	callq  850 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+ a42:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a46:	48 89 c7             	mov    %rax,%rdi
+ a49:	e8 b2 00 00 00       	callq  b00 <_ZN1kD1Ev>
+ a4e:	b8 00 00 00 00       	mov    $0x0,%eax
+ a53:	eb 1a                	jmp    a6f <main+0x97>                              跳转
+ a55:	48 89 c3             	mov    %rax,%rbx
+ a58:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a5c:	48 89 c7             	mov    %rax,%rdi
+ a5f:	e8 9c 00 00 00       	callq  b00 <_ZN1kD1Ev>
+ a64:	48 89 d8             	mov    %rbx,%rax
+ a67:	48 89 c7             	mov    %rax,%rdi
+ a6a:	e8 f1 fd ff ff       	callq  860 <_Unwind_Resume@plt>
+ a6f:	48 83 c4 18          	add    $0x18,%rsp                                   退出
+ a73:	5b                   	pop    %rbx
+ a74:	5d                   	pop    %rbp
+ a75:	c3                   	retq   
+
+ 总结    正常情况下
+            参数带入时 复制一份      const &拷贝构造 
+            返回时复制一份                         拷贝构造
+                    
+
+  k fun (k a)
+{ 
+ a.a = 6;
+return a ;  
+}
+int main() {
+k a;
+k&& c =  fun((a));
+cout<<a.a;
+cout<<"end\n";
+}                
+canstruct
+delete
+5end                      //三次析构   但是其中一个被延迟到 main 函数结束
+delete
+delete
+
+00000000000009b0 <_Z3fun1k>:
+ 9b0:	55                   	push   %rbp
+ 9b1:	48 89 e5             	mov    %rsp,%rbp
+ 9b4:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+ 9b8:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+ 9bc:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+ 9c0:	c7 00 06 00 00 00    	movl   $0x6,(%rax)
+ 9c6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9ca:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx
+ 9ce:	8b 12                	mov    (%rdx),%edx
+ 9d0:	89 10                	mov    %edx,(%rax)
+ 9d2:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9d6:	5d                   	pop    %rbp
+ 9d7:	c3                   	retq   
+
+00000000000009d8 <main>:
+ 9d8:	55                   	push   %rbp
+ 9d9:	48 89 e5             	mov    %rsp,%rbp
+ 9dc:	53                   	push   %rbx
+ 9dd:	48 83 ec 28          	sub    $0x28,%rsp
+ 9e1:	48 8d 45 dc          	lea    -0x24(%rbp),%rax               a
+ 9e5:	48 89 c7             	mov    %rax,%rdi
+ 9e8:	e8 fb 00 00 00       	callq  ae8 <_ZN1kC1Ev>
+ 9ed:	8b 45 dc             	mov    -0x24(%rbp),%eax               
+ 9f0:	89 45 e4             	mov    %eax,-0x1c(%rbp)                复制  a 
+ 9f3:	48 8d 45 e0          	lea    -0x20(%rbp),%rax                 返回值 
+ 9f7:	48 8d 55 e4          	lea    -0x1c(%rbp),%rdx
+ 9fb:	48 89 d6             	mov    %rdx,%rsi
+ 9fe:	48 89 c7             	mov    %rax,%rdi
+ a01:	e8 aa ff ff ff       	callq  9b0 <_Z3fun1k>
+ a06:	48 8d 45 e0          	lea    -0x20(%rbp),%rax
+ a0a:	48 89 45 e8          	mov    %rax,-0x18(%rbp)            -0x18的地址 上保存了返回值 的地址
+ a0e:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a12:	48 89 c7             	mov    %rax,%rdi
+ a15:	e8 fa 00 00 00       	callq  b14 <_ZN1kD1Ev>           析构复制对象
+ a1a:	8b 45 dc             	mov    -0x24(%rbp),%eax
+ a1d:	89 c6                	mov    %eax,%esi
+ a1f:	48 8d 3d 3a 16 20 00 	lea    0x20163a(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a26:	e8 f5 fd ff ff       	callq  820 <_ZNSolsEi@plt>
+ a2b:	48 8d 35 a6 01 00 00 	lea    0x1a6(%rip),%rsi        # bd8 <_ZStL19piecewise_construct+0x14>
+ a32:	48 8d 3d 27 16 20 00 	lea    0x201627(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a39:	e8 12 fe ff ff       	callq  850 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+ a3e:	48 8d 45 e0          	lea    -0x20(%rbp),%rax                    析构返回值
+ a42:	48 89 c7             	mov    %rax,%rdi
+ a45:	e8 ca 00 00 00       	callq  b14 <_ZN1kD1Ev>
+ a4a:	48 8d 45 dc          	lea    -0x24(%rbp),%rax                     析构a
+ a4e:	48 89 c7             	mov    %rax,%rdi
+ a51:	e8 be 00 00 00       	callq  b14 <_ZN1kD1Ev>
+ a56:	b8 00 00 00 00       	mov    $0x0,%eax
+ a5b:	eb 26                	jmp    a83 <main+0xab>                      跳转
+ a5d:	48 89 c3             	mov    %rax,%rbx
+ a60:	48 8d 45 e0          	lea    -0x20(%rbp),%rax
+ a64:	48 89 c7             	mov    %rax,%rdi
+ a67:	e8 a8 00 00 00       	callq  b14 <_ZN1kD1Ev>
+ a6c:	48 8d 45 dc          	lea    -0x24(%rbp),%rax
+ a70:	48 89 c7             	mov    %rax,%rdi
+ a73:	e8 9c 00 00 00       	callq  b14 <_ZN1kD1Ev>
+ a78:	48 89 d8             	mov    %rbx,%rax
+ a7b:	48 89 c7             	mov    %rax,%rdi
+ a7e:	e8 dd fd ff ff       	callq  860 <_Unwind_Resume@plt>
+ a83:	48 83 c4 28          	add    $0x28,%rsp
+ a87:	5b                   	pop    %rbx
+ a88:	5d                   	pop    %rbp
+ a89:	c3                   	retq  
+ 总结   引用成功延迟了 右值的生存期
+           但是在函数中仍然是以拷贝的方式 复制得到的
+
+k fun (k& a)
+{ 
+ a.a = 6;
+return a ;  
+}
+int main() {
+k a;
+k&& c =  fun((a));
+cout<<a.a;
+cout<<"end\n";
+}
+输出 
+canstruct
+6end
+delete                少了一次析构
+delete
+            
+  00000000000009b0 <_Z3funR1k>:
+ 9b0:	55                   	push   %rbp
+ 9b1:	48 89 e5             	mov    %rsp,%rbp
+ 9b4:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+ 9b8:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+ 9bc:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+ 9c0:	c7 00 06 00 00 00    	movl   $0x6,(%rax)
+ 9c6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9ca:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx
+ 9ce:	8b 12                	mov    (%rdx),%edx
+ 9d0:	89 10                	mov    %edx,(%rax)
+ 9d2:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9d6:	5d                   	pop    %rbp
+ 9d7:	c3                   	retq   
+
+00000000000009d8 <main>:
+ 9d8:	55                   	push   %rbp
+ 9d9:	48 89 e5             	mov    %rsp,%rbp
+ 9dc:	53                   	push   %rbx
+ 9dd:	48 83 ec 18          	sub    $0x18,%rsp
+ 9e1:	48 8d 45 e0          	lea    -0x20(%rbp),%rax
+ 9e5:	48 89 c7             	mov    %rax,%rdi
+ 9e8:	e8 e9 00 00 00       	callq  ad6 <_ZN1kC1Ev>
+ 9ed:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax           右值
+ 9f1:	48 8d 55 e0          	lea    -0x20(%rbp),%rdx           少了一次复制
+ 9f5:	48 89 d6             	mov    %rdx,%rsi
+ 9f8:	48 89 c7             	mov    %rax,%rdi
+ 9fb:	e8 b0 ff ff ff       	callq  9b0 <_Z3funR1k>
+ a00:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax         少了一次析构
+ a04:	48 89 45 e8          	mov    %rax,-0x18(%rbp)       
+ a08:	8b 45 e0             	mov    -0x20(%rbp),%eax
+ a0b:	89 c6                	mov    %eax,%esi
+ a0d:	48 8d 3d 4c 16 20 00 	lea    0x20164c(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a14:	e8 07 fe ff ff       	callq  820 <_ZNSolsEi@plt>
+ a19:	48 8d 35 a8 01 00 00 	lea    0x1a8(%rip),%rsi        # bc8 <_ZStL19piecewise_construct+0x14>
+ a20:	48 8d 3d 39 16 20 00 	lea    0x201639(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a27:	e8 24 fe ff ff       	callq  850 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+ a2c:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a30:	48 89 c7             	mov    %rax,%rdi
+ a33:	e8 ca 00 00 00       	callq  b02 <_ZN1kD1Ev>
+ a38:	48 8d 45 e0          	lea    -0x20(%rbp),%rax
+ a3c:	48 89 c7             	mov    %rax,%rdi
+ a3f:	e8 be 00 00 00       	callq  b02 <_ZN1kD1Ev>
+ a44:	b8 00 00 00 00       	mov    $0x0,%eax
+ a49:	eb 26                	jmp    a71 <main+0x99>
+ a4b:	48 89 c3             	mov    %rax,%rbx
+ a4e:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a52:	48 89 c7             	mov    %rax,%rdi
+ a55:	e8 a8 00 00 00       	callq  b02 <_ZN1kD1Ev>
+ a5a:	48 8d 45 e0          	lea    -0x20(%rbp),%rax
+ a5e:	48 89 c7             	mov    %rax,%rdi
+ a61:	e8 9c 00 00 00       	callq  b02 <_ZN1kD1Ev>
+ a66:	48 89 d8             	mov    %rbx,%rax
+ a69:	48 89 c7             	mov    %rax,%rdi
+ a6c:	e8 ef fd ff ff       	callq  860 <_Unwind_Resume@plt>
+ a71:	48 83 c4 18          	add    $0x18,%rsp
+ a75:	5b                   	pop    %rbx
+ a76:	5d                   	pop    %rbp
+ a77:	c3                   	retq   
+    总结   函数参数以引用的方式传入  
+
+  k&& fun (k& a)
+{ 
+ a.a = 6;
+return  move(a)  ;  
+}
+int main() {
+k a;
+k&& c =  fun((a));
+cout<<a.a;
+cout<<"end\n";  
+               
+canstruct
+6end              只构造一次 析构一次
+delete
+
+00000000000009b0 <_Z3funR1k>:
+ 9b0:	55                   	push   %rbp 
+ 9b1:	48 89 e5             	mov    %rsp,%rbp
+ 9b4:	48 83 ec 10          	sub    $0x10,%rsp          只带入了一个参数
+ 9b8:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+ 9bc:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9c0:	c7 00 06 00 00 00    	movl   $0x6,(%rax)
+ 9c6:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9ca:	48 89 c7             	mov    %rax,%rdi
+ 9cd:	e8 2c 01 00 00       	callq  afe <_ZSt4moveIR1kEONSt16remove_referenceIT_E4typeEOS3_>
+ 9d2:	c9                   	leaveq 
+ 9d3:	c3                   	retq   
+
+00000000000009d4 <main>:
+ 9d4:	55                   	push   %rbp
+ 9d5:	48 89 e5             	mov    %rsp,%rbp   
+ 9d8:	53                   	push   %rbx
+ 9d9:	48 83 ec 18          	sub    $0x18,%rsp             只构造一个地址
+ 9dd:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ 9e1:	48 89 c7             	mov    %rax,%rdi
+ 9e4:	e8 c7 00 00 00       	callq  ab0 <_ZN1kC1Ev>
+ 9e9:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ 9ed:	48 89 c7             	mov    %rax,%rdi
+ 9f0:	e8 bb ff ff ff       	callq  9b0 <_Z3funR1k>
+ 9f5:	48 89 45 e8          	mov    %rax,-0x18(%rbp)      标识符c 
+ 9f9:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+ 9fc:	89 c6                	mov    %eax,%esi
+ 9fe:	48 8d 3d 5b 16 20 00 	lea    0x20165b(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a05:	e8 16 fe ff ff       	callq  820 <_ZNSolsEi@plt>
+ a0a:	48 8d 35 97 01 00 00 	lea    0x197(%rip),%rsi        # ba8 <_ZStL19piecewise_construct+0x14>
+ a11:	48 8d 3d 48 16 20 00 	lea    0x201648(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a18:	e8 33 fe ff ff       	callq  850 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+ a1d:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a21:	48 89 c7             	mov    %rax,%rdi
+ a24:	e8 b3 00 00 00       	callq  adc <_ZN1kD1Ev>
+ a29:	b8 00 00 00 00       	mov    $0x0,%eax
+ a2e:	eb 1a                	jmp    a4a <main+0x76>
+ a30:	48 89 c3             	mov    %rax,%rbx
+ a33:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a37:	48 89 c7             	mov    %rax,%rdi
+ a3a:	e8 9d 00 00 00       	callq  adc <_ZN1kD1Ev>
+ a3f:	48 89 d8             	mov    %rbx,%rax
+ a42:	48 89 c7             	mov    %rax,%rdi
+ a45:	e8 16 fe ff ff       	callq  860 <_Unwind_Resume@plt>
+ a4a:	48 83 c4 18          	add    $0x18,%rsp
+ a4e:	5b                   	pop    %rbx
+ a4f:	5d                   	pop    %rbp
+ a50:	c3                   	retq 
+
+ 总结     跟指针没区别了
+  
+ k * fun (k *a)     尝试用指针实现
+{ 
+ a-> a= 6;
+return   a ;  
+}
+int main() {
+k a;
+k * c =  fun((&a));
+cout<<c->a;
+cout<<"end\n";
+}
+输出
+canstruct
+6end
+delete
+ 
+00000000000009b0 <_Z3funP1k>:
+ 9b0:	55                   	push   %rbp
+ 9b1:	48 89 e5             	mov    %rsp,%rbp
+ 9b4:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+ 9b8:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9bc:	c7 00 06 00 00 00    	movl   $0x6,(%rax)
+ 9c2:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9c6:	5d                   	pop    %rbp
+ 9c7:	c3                   	retq   
+
+00000000000009c8 <main>:
+ 9c8:	55                   	push   %rbp
+ 9c9:	48 89 e5             	mov    %rsp,%rbp
+ 9cc:	53                   	push   %rbx
+ 9cd:	48 83 ec 18          	sub    $0x18,%rsp
+ 9d1:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ 9d5:	48 89 c7             	mov    %rax,%rdi
+ 9d8:	e8 c7 00 00 00       	callq  aa4 <_ZN1kC1Ev>
+ 9dd:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ 9e1:	48 89 c7             	mov    %rax,%rdi
+ 9e4:	e8 c7 ff ff ff       	callq  9b0 <_Z3funP1k>
+ 9e9:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+ 9ed:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+ 9f0:	89 c6                	mov    %eax,%esi
+ 9f2:	48 8d 3d 67 16 20 00 	lea    0x201667(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ 9f9:	e8 22 fe ff ff       	callq  820 <_ZNSolsEi@plt>
+ 9fe:	48 8d 35 93 01 00 00 	lea    0x193(%rip),%rsi        # b98 <_ZStL19piecewise_construct+0x14>
+ a05:	48 8d 3d 54 16 20 00 	lea    0x201654(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a0c:	e8 3f fe ff ff       	callq  850 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+ a11:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a15:	48 89 c7             	mov    %rax,%rdi
+ a18:	e8 b3 00 00 00       	callq  ad0 <_ZN1kD1Ev>
+ a1d:	b8 00 00 00 00       	mov    $0x0,%eax
+ a22:	eb 1a                	jmp    a3e <main+0x76>
+ a24:	48 89 c3             	mov    %rax,%rbx
+ a27:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a2b:	48 89 c7             	mov    %rax,%rdi
+ a2e:	e8 9d 00 00 00       	callq  ad0 <_ZN1kD1Ev>
+ a33:	48 89 d8             	mov    %rbx,%rax
+ a36:	48 89 c7             	mov    %rax,%rdi
+ a39:	e8 22 fe ff ff       	callq  860 <_Unwind_Resume@plt>
+ a3e:	48 83 c4 18          	add    $0x18,%rsp
+ a42:	5b                   	pop    %rbx
+ a43:	5d                   	pop    %rbp
+ a44:	c3                   	retq   
+
+
+ 尝试把局部变量带出来
+ k  fun ()
+{ 
+ k  s;
+ s.a= 6;
+return   s;  
+}
+int main() {
+k&& c =  fun();
+cout<<c.a;
+cout<<"end\n";
+}
+输出    成功带出了 局部变量  右值
+此时函数只是在  c 的地址上构建该对象
+canstruct       
+6end
+delete
+
+00000000000009b0 <_Z3funv>:
+ 9b0:	55                   	push   %rbp
+ 9b1:	48 89 e5             	mov    %rsp,%rbp
+ 9b4:	48 83 ec 10          	sub    $0x10,%rsp
+ 9b8:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+ 9bc:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9c0:	48 89 c7             	mov    %rax,%rdi
+ 9c3:	e8 e8 00 00 00       	callq  ab0 <_ZN1kC1Ev>
+ 9c8:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9cc:	c7 00 06 00 00 00    	movl   $0x6,(%rax)
+ 9d2:	90                   	nop
+ 9d3:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9d7:	c9                   	leaveq 
+ 9d8:	c3                   	retq   
+
+00000000000009d9 <main>:
+ 9d9:	55                   	push   %rbp
+ 9da:	48 89 e5             	mov    %rsp,%rbp
+ 9dd:	53                   	push   %rbx
+ 9de:	48 83 ec 18          	sub    $0x18,%rsp
+ 9e2:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ 9e6:	48 89 c7             	mov    %rax,%rdi
+ 9e9:	e8 c2 ff ff ff       	callq  9b0 <_Z3funv>
+ 9ee:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ 9f2:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+ 9f6:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+ 9fa:	8b 00                	mov    (%rax),%eax
+ 9fc:	89 c6                	mov    %eax,%esi
+ 9fe:	48 8d 3d 5b 16 20 00 	lea    0x20165b(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a05:	e8 16 fe ff ff       	callq  820 <_ZNSolsEi@plt>
+ a0a:	48 8d 35 87 01 00 00 	lea    0x187(%rip),%rsi        # b98 <_ZStL19piecewise_construct+0x14>
+ a11:	48 8d 3d 48 16 20 00 	lea    0x201648(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a18:	e8 33 fe ff ff       	callq  850 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+ a1d:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a21:	48 89 c7             	mov    %rax,%rdi
+ a24:	e8 b3 00 00 00       	callq  adc <_ZN1kD1Ev>
+ a29:	b8 00 00 00 00       	mov    $0x0,%eax
+ a2e:	eb 1a                	jmp    a4a <main+0x71>
+ a30:	48 89 c3             	mov    %rax,%rbx
+ a33:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a37:	48 89 c7             	mov    %rax,%rdi
+ a3a:	e8 9d 00 00 00       	callq  adc <_ZN1kD1Ev>
+ a3f:	48 89 d8             	mov    %rbx,%rax
+ a42:	48 89 c7             	mov    %rax,%rdi
+ a45:	e8 16 fe ff ff       	callq  860 <_Unwind_Resume@plt>
+ a4a:	48 83 c4 18          	add    $0x18,%rsp
+ a4e:	5b                   	pop    %rbx
+ a4f:	5d                   	pop    %rbp
+ a50:	c3                   	retq   
+
+很奇怪的用法    这种感觉类似带入一个指针 构造 然后返回
+
+============================声明 拷贝构造  移动构造========
+class k{
+public:
+    k(){ cout<<"canstruct\n";a=5;}
+    k( const k&x){ cout<<"copy\n";a = 11;}
+    k(k&&x){ cout<<"move\n";a = 2;}
+    //k operator =(k a ){ cout<<"==\n";return a;} 
+	  ~k(){cout<<"delete\n";}
+    int a;
+};
+k  fun (k a )
+{ 
+ a.a= 6;
+return   a;  
+}
+int main() {
+k a;
+fun(a );
+cout<<a.a;
+cout<<"end\n";
+}
+输出
+canstruct
+copy          函数带入
+move         构造右值
+delete
+delete
+5end
+delete
+
+00000000000009b0 <_Z3fun1k>:
+ 9b0:	55                   	push   %rbp
+ 9b1:	48 89 e5             	mov    %rsp,%rbp
+ 9b4:	48 83 ec 10          	sub    $0x10,%rsp
+ 9b8:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+ 9bc:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+ 9c0:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+ 9c4:	c7 00 06 00 00 00    	movl   $0x6,(%rax)
+ 9ca:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx
+ 9ce:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9d2:	48 89 d6             	mov    %rdx,%rsi
+ 9d5:	48 89 c7             	mov    %rax,%rdi
+ 9d8:	e8 7d 01 00 00       	callq  b5a <_ZN1kC1EOS_>    移动构造
+ 9dd:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+ 9e1:	c9                   	leaveq 
+ 9e2:	c3                   	retq   
+
+00000000000009e3 <main>:
+ 9e3:	55                   	push   %rbp
+ 9e4:	48 89 e5             	mov    %rsp,%rbp
+ 9e7:	53                   	push   %rbx
+ 9e8:	48 83 ec 18          	sub    $0x18,%rsp
+ 9ec:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax           a
+ 9f0:	48 89 c7             	mov    %rax,%rdi
+ 9f3:	e8 06 01 00 00       	callq  afe <_ZN1kC1Ev>        构造函数
+ 9f8:	48 8d 55 e4          	lea    -0x1c(%rbp),%rdx
+ 9fc:	48 8d 45 ec          	lea    -0x14(%rbp),%rax                 
+ a00:	48 89 d6             	mov    %rdx,%rsi                          带入 a 
+ a03:	48 89 c7             	mov    %rax,%rdi
+ a06:	e8 1f 01 00 00       	callq  b2a <_ZN1kC1ERKS_>     拷贝构造 
+ a0b:	48 8d 45 e8          	lea    -0x18(%rbp),%rax                右值  
+ a0f:	48 8d 55 ec          	lea    -0x14(%rbp),%rdx                  a
+ a13:	48 89 d6             	mov    %rdx,%rsi                             
+ a16:	48 89 c7             	mov    %rax,%rdi                            
+ a19:	e8 92 ff ff ff       	callq  9b0 <_Z3fun1k>                     调用 
+ a1e:	48 8d 45 e8          	lea    -0x18(%rbp),%rax
+ a22:	48 89 c7             	mov    %rax,%rdi
+ a25:	e8 60 01 00 00       	callq  b8a <_ZN1kD1Ev>           析构
+ a2a:	48 8d 45 ec          	lea    -0x14(%rbp),%rax
+ a2e:	48 89 c7             	mov    %rax,%rdi
+ a31:	e8 54 01 00 00       	callq  b8a <_ZN1kD1Ev>
+ a36:	8b 45 e4             	mov    -0x1c(%rbp),%eax
+ a39:	89 c6                	mov    %eax,%esi
+ a3b:	48 8d 3d 1e 16 20 00 	lea    0x20161e(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a42:	e8 d9 fd ff ff       	callq  820 <_ZNSolsEi@plt>
+ a47:	48 8d 35 06 02 00 00 	lea    0x206(%rip),%rsi        # c54 <_ZStL19piecewise_construct+0x20>
+ a4e:	48 8d 3d 0b 16 20 00 	lea    0x20160b(%rip),%rdi        # 202060 <_ZSt4cout@@GLIBCXX_3.4>
+ a55:	e8 f6 fd ff ff       	callq  850 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>
+ a5a:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a5e:	48 89 c7             	mov    %rax,%rdi
+ a61:	e8 24 01 00 00       	callq  b8a <_ZN1kD1Ev>
+ a66:	b8 00 00 00 00       	mov    $0x0,%eax
+ a6b:	eb 2b                	jmp    a98 <main+0xb5>
+ a6d:	48 89 c3             	mov    %rax,%rbx
+ a70:	48 8d 45 ec          	lea    -0x14(%rbp),%rax
+ a74:	48 89 c7             	mov    %rax,%rdi
+ a77:	e8 0e 01 00 00       	callq  b8a <_ZN1kD1Ev>
+ a7c:	eb 03                	jmp    a81 <main+0x9e>
+ a7e:	48 89 c3             	mov    %rax,%rbx
+ a81:	48 8d 45 e4          	lea    -0x1c(%rbp),%rax
+ a85:	48 89 c7             	mov    %rax,%rdi
+ a88:	e8 fd 00 00 00       	callq  b8a <_ZN1kD1Ev>
+ a8d:	48 89 d8             	mov    %rbx,%rax
+ a90:	48 89 c7             	mov    %rax,%rdi
+ a93:	e8 c8 fd ff ff       	callq  860 <_Unwind_Resume@plt>
+ a98:	48 83 c4 18          	add    $0x18,%rsp
+ a9c:	5b                   	pop    %rbx
+ a9d:	5d                   	pop    %rbp
+ a9e:	c3                   	retq  
+ 在调用时  调用拷贝构造 构建参数
+ 返回时      调用 移动构造 构建返回值
+
+c++ 类对象的行为很复杂
+比较绕脑的地方
+
+ k  fun (k & a )           无调用
+{ 
+ a.a= 6;
+1return   (a);              调用 copy
+2return  move(a);       调用 move
+}
+默认行为    带入参数调用拷贝构造   返回参数调用 移动构造 
+调用哪个函数 取决于  带入参数
+有没有定义  都是传值调用
+
+只有在定义析构函数时   1 参数传值时 带入的是当前对象的复制品地址 
+                                     2  创建了一个地址（右值） 同样带入函数用以创建返回对象
+                                    （在没有析构函数时 直接使用copy 的方式）
+无论怎么样  &&obj 的方式 都可以延长右值的时间 但是 
+***右值要么是复制而来，要么是移动构造，
+或者拷贝构造得到,   除非返回类型是指针或引用，否则他不跟任何对象有关联*****
+move 并未移动任何东西 ，只是将左值转换右值 在某些情况下用以触发 移动构造
