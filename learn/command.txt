@@ -1,0 +1,12 @@
+find  文件查找
+
+find [path]  -name  [filename] 
+
+grep 文件内容查找
+
+-c 匹配行计数
+-n 显示匹配行行号
+
+
+grep    -n       ss        C++-Style.text
+           行号    内容          文件
