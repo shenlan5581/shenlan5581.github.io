@@ -1,0 +1,67 @@
+#img_boss{     
+      position: relative;
+      background-color: rgb(253, 253, 253);
+      width:1160px;
+      height :299px;
+      display:block; 
+    }
+    
+#img_boss>img{
+    width:1160px;
+    height:299px; 
+    display:none; 
+ 
+    z-index:  5;
+    }
+.down1{
+   position: absolute;
+   z-index:  3;
+   background-color:#757777 ;
+   width:1160px; height:3px;
+   }
+.down1>div{
+   background-color:#505050 ;
+   width:145px; height:3px; 
+   float:left
+   }
+#down2 {  position: absolute;  top:373px ;
+         width:1160px; height:40px;    display:block;   
+         z-index: 2;
+   }                                                
+#down2>div{ opacity:0.5;  
+    text-align: center;  
+     padding-top:10px;
+     font-size:0.8em;
+     background-color:#000000;
+     width:145px; height:30px; 
+     float:left;
+     color:#ffffff ;
+     }
+
+     /*css animation
+         /* 图片隐藏现实动画效果类 */
+ .imghide{                           /*动画类*/
+animation:imghide 1s;
+-webkit-animation:imghide 1s;} 
+.imgshow{                           /*动画类*/
+animation:imgshow 1s;
+-webkit-animation:imgshow 1s;} 
+   @keyframes imghide {
+from{display:block;opacity:1;}
+to {display:none;opacity:0;}
+} 
+@-webkit-keyframes imghide          /* Safari 和 Chrome */{
+from{ display:block;opacity:1;}
+to {display:none;opacity:0;}
+}
+    @keyframes imgshow                 /*鼠标离开效果*/
+{
+from{display:none; opacity:0;}
+to {display:block; opacity:1;}
+}
+@-webkit-keyframes imgshow         /* Safari 和 Chrome */
+{
+from{  display:none ; opacity:0; }
+to {   display:block; opacity:1; }
+}
+/*

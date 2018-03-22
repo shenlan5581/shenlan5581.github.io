@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html> 
 <head> 
-<link href="https://shenlan5581.github.io./page/css_js/k.css" rel="stylesheet" type="text/css" />
+<link href="https://shenlan5581.github.io./css_js/index.css" rel="stylesheet" type="text/css" /> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script src="https://shenlan5581.github.io./page/css_js/k.js">
-</script>
+<script src="https://shenlan5581.github.io./css_js/index.js"></script>
+ 
+ 
 <title>K</title>   
 </head>
- 
-<body> 
-     
+<body>    
     <top id = "top">   
         Learn
        <span id = "auther"> 22542812@qq.com </span>
     </top>
-
-   <div id="left"> 
+<div id="left">
+     <div id="info">
+       <img src="https://shenlan5581.github.io./img/i.jpeg">  </img>
+       <div>
+         <h3>邢柯 </h3> 
+         1986.3.19<br>
+         河南-郑州<br>
+         22542812@qq.com<br><br>
+       </div>
+       <div id ="src">CONNECT WITH ME &nbsp<br>
+       <a href ="https://github.com/shenlan5581"><img src="https://shenlan5581.github.io./img/git.jpeg"></img></a>
+       </div>
+       </div>
+    <div id="list">         
       <h3>Some Pages</h3>
       <div class="content" >
       <a href="https://www.zhihu.com/question/28557115">rest and restful</a>
@@ -23,52 +34,83 @@
       <div class="content" > 
       <a href="https://shenlan5581.github.io./page/find.html">Service </a> 
       </div>   
-      <div class="content" > 
-      <a href="https://shenlan5581.github.io./page/mysql.html">MYSQL</a> 
-      </div>
       <div class="content" >
-      <a href="https://shenlan5581.github.io./page/class.html">class</a> 
+      <a href="#class">class</a> 
       </div>           
        <div class="content" >
       <a href="https://shenlan5581.github.io./page/design.html">Design Patterns</a> 
       </div>         
-</div>
+    </div>
+ </div>
 <div id="middle">
-    <h3>Note</h3>
-  <h4> C++   style</h4>
-   * google c++ style    7. 命名约定* <br>
-    函数命名, 变量命名, 文件命名要有描述性; 少用缩写.<br>
-    类型命名<br>
-   类型名称的每个单词首字母均大写, 不包含下划线: MyExcitingClass, MyExcitingEnum.<br>
-    变量命名<br>
-          变量 (包括函数参数) 和数据成员名一律小写, 单词之间用下划线连接. <br>
-          类的成员变量以下划线结尾, 但结构体的就不用, <br>
-          如: a_local_variable, a_struct_data_member, a_class_data_member_.<br>
-    函数命名<br>
-          常规函数使用大小写混合, 取值和设值函数则要求与变量名匹配: <br>
-          MyExcitingFunction(), MyExcitingMethod(), <br>
-          my_exciting_member_variable(), set_my_exciting_member_variable().<br>
-      <h4>make</h4> 
-main:main.o<br>
-	echo "1111"  #（默认执行了 g++ -c -o main main.cpp<br>
-	
-#     上面的语言默认执行	g++ -c -o main main.cpp<br>
-#     下面等于重新定义了默认的 编译操作<br>	
-.cpp.o:<br>
-	g++  -c     -o    $@ $<<br>
-	echo "2222"<br>
-# .cpp.o:  =====等价于====  %.o : %.cpp<br>
+   <div class="title">C++ 关于右值引用  </div>
+   <hr>
+   <pre>
+   个人浅见<br>
+   c++11 右值引用作为一种新的对像类型,明确区分了左值右值 
+   在C++ 中拷贝构造函数的参数类型是该对象的引用，也就是说当构造函数的实参是 const & 的时候将会触发拷贝构造函数
+   所以同样的 移动构造函数是在函数实参是右值引用的时候会被触发
+   同时类对象多了,移动构造函数.以及std::move()函数.
+   ... ... 看起来似乎只是多了一种构造对象的方式,其实不然。<blue> 
+   个人认为拷贝构造和移动构造的最大区别在于 移动构造可以改变原有对象</blue>
+   其实这就又扯上了深拷贝和浅拷贝的问题
+   <blue>我更关心的是，右值如何减少了不必要的拷贝开支... ... </blue> </pre>
+   <code><pre> 
+    #include &ltiostream&gt
+    #include &ltstring&gt
+    using namespace std;
+    //int &&  c = a;<red>错误语句 (右值引用左值，必须转换为右值)</red>
+    <yellow>class</yellow> k{
+    public:
+        k(){ cout<<"canstruct\n";a =new int(5);} <red>申请a的动态空间</red>
+        k( const k&x){ cout<<"copy\n";a =new int(*x.a);}<red>拷贝构造</red>    
+        k(k&&x){ cout<<"move\n";a=x.a;x.a =nullptr;} <red>移动构造</red>
+        <red>重点-- a=x.a  , x.a = nullptr  
+               移动构造 把x.a赋值给 a,然后将x.a置空
+             （我们传出去了一个地址，原本由x.a记录的堆地址，
+             现在由新对象的a指针记录，而原来的x.a 则被置空）</red>
+        ~k(){cout<<"delete\n"; delete a;}
+        int *a;
+    };
+    k fun ( ){
+    k a;         <red>函数内由 a 的构造申请了动态内存</red>
+    *a.a=10
+    cout< < *a.a;
+    return    a; <red>此时调用了移动构造函数</red>
+    }
+    int <yellow>main</yellow>() {   
+    k c = fun();
+    cout<< *c.a << endl; 
+    cout<<"end\n";   <red>函数外输出10</red>
+    }<red>fun（）函数内对象a在析构时他的内部成员指针a被置空了，所以堆空间并未释放
+     而该地址则被函数外部的c对象记录下来，当c对象销毁时再调用析构来释放堆内存空间</red>
+  </pre>
+  </code>
+    可以看到 核心思想  就是把函数内 栈变量 申请的堆内存地址传出来<br>
+    其在移动构造的时候<br> 
+    把 a 的值 取出 构建右值然后 把  a  的值  置空  堆内存就被保留了下来<br> 
+    右值构建的对象在销毁时调用析构 从而避免了内存泄露<br>   
+    <blue><pre>
+还有关于右值引用的完美转发，也就是引用折叠，涉及到模板方面
+这种方式和c++的智能指针也有许多相似之处，只是需要一个对象保存一个地址而已
+用裸指针应该更方便才对啊！
+c++似乎势要抛弃裸指针
+为了兼容底层要保留c的方式
+为了提高效率和易用也提供了更多的功能
+这似乎是造成c++语法复杂的原因之一
+</pre></blue>
+<br>
+
+<div id = "class" class="title">C++ 类关系</div>
+<hr> 
+<img src="https://shenlan5581.github.io./img/class.jpg" width ="1000px";></img>
+
+
  
-<h4>git</h4>
-git push origin 本地                      ：创建远程分支 <br>
-git checkout -b 本地 origin/远程     : 从远程下载一个本地没有的分支 <br>
-git fetch origin 远程                      ：   本地<br>
-git push origin :远程                     ：删除远程分支<br>
-git push origin  --delete 远程         ：删除远程分支<br>
- 
-</div>
- 
-       
+</div> <!--middle end -->
+<div id="clean"></div>   
+    
 </body>
+<foot> </foot>
 </html> 
  

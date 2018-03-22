@@ -1,0 +1,671 @@
+/*left arrow*/
+#left_arrow_boss {
+   position:absolute;
+   width:50px; 
+   height:60px; 
+   background-color: #e27901;
+   opacity:0;
+   left:40px;top:120px;     
+   z-index:2;
+   }
+ 
+#arrow_lefta{   
+ position: absolute;
+ left:40px;
+ top:150px;   
+ border-radius:1px;
+ background-color:#b0bfbe ;            
+ width:35px;
+ height:2px;                                     
+ transform:rotate(-50deg);     /*旋转效果*/
+-ms-transform:rotate(-50deg); 	/* IE 9 */
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+ transform-origin:0% 50%;/*          设置旋转圆心                IE 9 */      
+-ms-transform-origin:0% 50%; 		/* IE 9 */	/* Safari 和 Chrome */
+-webkit-transform-origin:0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+  
+}    
+ .arrow_lefta{                           /*动画类*/
+ animation: myfirsta  0.5s;
+ animation-iteration-count:1;
+-webkit-animation: myfirsta 0.5s;  } 
+ .arrow_leftaa{                           /*动画类*/
+ animation: myfirstaa  0.5s;
+ animation-iteration-count:1;
+-webkit-animation: myfirstaa 0.5s;  } 
+ @keyframes myfirsta      /*鼠标悬停效果*/
+{
+from{   
+   transform:rotate(-50deg);     /*旋转效果*/
+-ms-transform:rotate(-50deg); 	/* IE 9 */
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+      }
+to {      /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(-30deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
+   }
+}
+@-webkit-keyframes myfirsta  /* Safari 和 Chrome */
+{
+from{    transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {  transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+ @keyframes myfirstaa                                                 /*鼠标离开效果*/
+{
+from{   
+   transform:rotate(-30deg);     /*旋转效果*/
+-ms-transform:rotate(-30deg); 	/* IE 9 */
+-webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
+      }
+to {      
+-ms-transform:rotate(-50deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+   }
+}
+@-webkit-keyframes myfirstaa  /* Safari 和 Chrome */
+{
+from{ transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {  transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+ 
+/*bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb*//*箭头效果*/
+#arrow_leftb{ 
+ position:absolute;
+ border-radius:1px;
+ background-color:#f5f5f5 ;   
+ width:0px; 
+ height:2px;  
+ left:40px;
+ top:150px;                      
+ transform:rotate(-50deg);     /*旋转效果*/
+-ms-transform:rotate(-50deg); 	/* IE 9 */
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+ 
+ transform-origin:0% 50%;/*          设置旋转圆心                IE 9 */      
+-ms-transform-origin:0% 50%; 		/* IE 9 */	/* Safari 和 Chrome */
+-webkit-transform-origin:0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+  
+}     
+.arrow_leftb{
+ animation: myfirstb 0.5s;
+-webkit-animation: myfirstb 0.5s;	/* Safari 和 Chrome */
+-o-animation: myfirst  0.5s;	 
+}
+.arrow_leftbb{                                 /*鼠标离开效果*/
+ animation: myfirstbb 0.5s;
+-webkit-animation: myfirstbb 0.5s;	/* Safari 和 Chrome */
+-o-animation: myfirst  0.5s;	 
+}
+@keyframes myfirstb
+{
+from{    width:0px; transform:rotate(-45deg); 
+   transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(-45deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {   width:35px;  transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(-30deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-20deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+ 
+@-webkit-keyframes myfirstb  /* Safari 和 Chrome */
+{
+from{   width:0px; transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to { width:35x;   transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+
+ @keyframes myfirstbb
+{
+from{  width:35px; transform:rotate(-30deg); 
+   transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(-30deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {   width:0px;  transform:rotate(-50deg);     /*旋转效果*/
+-ms-transform:rotate(-50deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(-20deg); /* Safari 和 Chrome */
+    }
+}
+ 
+@-webkit-keyframes myfirstbb  /* Safari 和 Chrome */
+{
+from{  width:35px; transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to { width:00px;   transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+ 
+/*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
+#arrow_leftc{  
+ position:absolute;        
+ border-radius:1px;
+ background-color:#b0bfbe  ;   
+ width:35px; height:2px;       
+ left:40px;
+ top:150px;                      
+ transform:rotate(50deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+-webkit-transform:rotate(50deg); /* Safari 和 Chrome */
+ transform-origin:0% 50%;/*          设置旋转圆心                IE 9 */      
+-ms-transform-origin:0% 50%; 		/* IE 9 */	/* Safari 和 Chrome */
+-webkit-transform-origin: 0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+}     
+.arrow_leftc{      
+ animation: myfirstc 0.5s;
+-webkit-animation: myfirstc 0.5s;	/* Safari 和 Chrome */                  
+   }
+  .arrow_leftcc{      
+ animation: myfirstcc 0.5s;
+-webkit-animation: myfirstcc 0.5s;	/* Safari 和 Chrome */                  
+   }
+@keyframes myfirstc
+{
+from{   
+   transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {      /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(30deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+                       }
+}
+ 
+@-webkit-keyframes myfirstc  /* Safari 和 Chrome */
+{
+from{    transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {  transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(30deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+@keyframes myfirstcc
+{
+from{   
+   transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(30deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {      /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+                       }
+}
+ 
+@-webkit-keyframes myfirstcc  /* Safari 和 Chrome */
+{
+from{    transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {  transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(30deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+ 
+/*ddddddddddddddddddddddddddddddddddddddddddd*//*箭头效果*/
+#arrow_leftd{  
+ position:absolute;       
+ border-radius:1px;
+ background-color:#f5f5f5; 
+ width:0px; height:2px;       
+ left:40px;
+ top:150px;
+ transform:rotate( 50deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate( 50deg); /* Safari 和 Chrome */
+ 
+ 
+ transform-origin:0% 50%;/*          设置旋转圆心                IE 9 */      
+	 
+-webkit-transform-origin: 0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+  
+}    
+.arrow_leftd{
+ animation: myfirstd 0.5s;
+-webkit-animation: myfirstd 0.5s;	/* Safari 和 Chrome */
+-o-animation: myfirst  0.5s;
+}	 
+.arrow_leftdd{
+ animation: myfirstdd 0.5s;
+-webkit-animation: myfirstdd 0.5s;	/* Safari 和 Chrome */
+-o-animation: myfirst  0.5s;	 
+}
+@keyframes myfirstd
+{
+from{    width:0px;
+   transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {    width:35px;  /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(30deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-20deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+ 
+@-webkit-keyframes myfirstd  /* Safari 和 Chrome */
+{
+from{   width:0px; transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate( 50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to { width:35px; transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate( 30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+
+@keyframes myfirstdd
+{
+from{    width:35px;
+   transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(30deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to {    width: 0px;  /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(50deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate(-20deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+ 
+@-webkit-keyframes myfirstdd  /* Safari 和 Chrome */
+{
+from{   width:35px; transform:rotate(-45deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate( 30deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);       }
+to { width:  0px; transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(7deg); 	/* IE 9 */
+-moz-transform:rotate(7deg); 	/* Firefox */
+-webkit-transform:rotate( 50deg); /* Safari 和 Chrome */
+-o-transform:rotate(7deg);      }
+}
+/*ight*/
+ #right_arrow_boss {
+ width:50px; 
+ height:60px;
+ background-color: #234b5c;
+ position:absolute;  
+opacity:0.0;
+z-index:2;         
+left:1070px;
+top:120px;   
+}
+/*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/ /*箭头效果*/ 
+ 
+#arrow_righta{  position:absolute;        border-radius:1px;
+ background-color:#b0bfbe   ;     
+ width:35px; height:2px; 
+ left:1120px;
+ top:145px;                     
+    
+ transform:rotate(230deg);     /*旋转效果*/
+-ms-transform:rotate(230deg); 	/* IE 9 */
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+ 
+ transform-origin:0%  50%;/*          设置旋转圆心                IE 9 */      
+-ms-transform-origin:0% 50%; 		/* IE 9 */	/* Safari 和 Chrome */
+-webkit-transform-origin:0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+  
+}    
+ .arrow_righta{                           /*动画类*/
+ animation: myfirstRa  0.5s;
+ animation-iteration-count:1;
+-webkit-animation: myfirstRa 0.5s;  } 
+ .arrow_rightaa{                           /*动画类*/
+ animation: myfirstRaa  0.5s;
+ animation-iteration-count:1;
+-webkit-animation: myfirstRaa 0.5s;  } 
+ @keyframes myfirstRa                                   /*鼠标悬停效果*/
+{
+from{   
+   transform:rotate( 230deg);     /*旋转效果*/
+-ms-transform:rotate( 230deg); 	/* IE 9 */
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+      }
+to {      /* 设置圆心*/ transform:rotate(210deg);     /*旋转效果*/
+-ms-transform:rotate(210deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(210deg); /* Safari 和 Chrome */
+   }
+}
+@-webkit-keyframes myfirstRa  /* Safari 和 Chrome */
+{
+from{     transform:rotate(230deg);     /*旋转效果*/
+-ms-transform:rotate(230deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+  }
+to{   transform:rotate(210deg);     /*旋转效果*/
+-ms-transform:rotate(210deg); 	/* IE 9 */
+-webkit-transform:rotate(210deg); /* Safari 和 Chrome */
+      }
+}
+
+
+ @keyframes myfirstRaa                                                 /*鼠标离开效果*/
+{
+from{   
+   transform:rotate(210deg);     /*旋转效果*/
+-ms-transform:rotate(210deg); 	/* IE 9 */
+-webkit-transform:rotate(210deg); /* Safari 和 Chrome */
+      }
+to {      
+-ms-transform:rotate( 230deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate( 230deg); /* Safari 和 Chrome */
+   }
+}
+@-webkit-keyframes myfirstRaa  /* Safari 和 Chrome */
+{
+from{ transform:rotate(210deg);     /*旋转效果*/
+-ms-transform:rotate(210deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate( 210deg); /* Safari 和 Chrome */
+-o-transform:rotate(210deg);       }
+to {   transform:rotate(230deg);     /*旋转效果*/
+-ms-transform:rotate(230deg); 	/* IE 9 */
+-moz-transform:rotate(230deg); 	/* Firefox */
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+}
+}
+ 
+/*bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb*//*箭头效果*/
+#arrow_rightb{  
+      position:absolute;  
+       border-radius:1px;  
+ background-color:#f5f5f5 ;  
+  width: 0px; height:2px;              
+  left:1120px;
+  top:145px;                     
+              
+ transform:rotate(230deg);     /*旋转效果*/
+-ms-transform:rotate(230deg); 	/* IE 9 */
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+ 
+ transform-origin:0%  50%;/*          设置旋转圆心                IE 9 */      
+-ms-transform-origin:0% 50%; 		/* IE 9 */	/* Safari 和 Chrome */
+-webkit-transform-origin:0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+}     
+.arrow_rightb{
+ animation: myfirstRb 0.5s;
+-webkit-animation: myfirstRb 0.5s;	/* Safari 和 Chrome */
+  
+}
+.arrow_rightbb{                                 /*鼠标离开效果*/
+ animation: myfirstRbb 0.5s;
+-webkit-animation: myfirstRbb 0.5s;	/* Safari 和 Chrome */
+ 
+}
+@keyframes myfirstRb
+{
+from{    width:0px;  
+  
+-ms-transform:rotate(230deg); 	/* IE 9 */
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+      }
+to {   width:35px;   
+-ms-transform:rotate(210deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(210deg); /* Safari 和 Chrome */
+  }
+}
+ 
+@-webkit-keyframes myfirstRb  /* Safari 和 Chrome */
+{
+from{   width:0px; 
+-ms-transform:rotate(230deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+     }
+to { width:35px;    
+-ms-transform:rotate(210deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(210deg); /* Safari 和 Chrome */
+     }
+}
+
+ @keyframes myfirstRbb
+{
+from{  width:35px;  
+   transform:rotate(210deg);     /*旋转效果*/
+-ms-transform:rotate(210deg); 	/* IE 9 */
+-webkit-transform:rotate(210deg); /* Safari 和 Chrome */
+      }
+to {   width:0px;  transform:rotate(230deg);     /*旋转效果*/
+-ms-transform:rotate(230deg); 	/* IE 9 */
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+    }
+}
+ 
+@-webkit-keyframes myfirstRbb  /* Safari 和 Chrome */
+{
+from{  width:35px; 
+-ms-transform:rotate(210deg); 	/* IE 9 */
+-moz-transform:rotate(210deg); 	/* Firefox */
+-webkit-transform:rotate(210deg); /* Safari 和 Chrome */
+       }
+to { width:0px;  
+-ms-transform:rotate(230deg); 	/* IE 9 */
+-moz-transform:rotate(230deg); 	/* Firefox */
+-webkit-transform:rotate(230deg); /* Safari 和 Chrome */
+       }
+}
+ 
+/*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
+#arrow_rightc{  
+ position:absolute;   
+  border-radius:1px;
+  background-color:#b0bfbe ; 
+  width:35px; height:2px;       
+  left:1120px;
+  top:145px;                     
+     
+ transform:rotate(13deg);     /*旋转效果*/
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-webkit-transform:rotate(130deg); /* Safari 和 Chrome */
+ 
+ transform-origin:0%  50%;/*          设置旋转圆心                IE 9 */      
+-ms-transform-origin:0% 50%; 		/* IE 9 */	/* Safari 和 Chrome */
+-webkit-transform-origin:0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+}     
+.arrow_rightc{      
+ animation: myfirstRc 0.5s;
+-webkit-animation: myfirstRc 0.5s;	/* Safari 和 Chrome */                  
+   }
+  .arrow_rightcc{      
+ animation: myfirstRcc 0.5s;
+-webkit-animation: myfirstRcc 0.5s;	/* Safari 和 Chrome */                  
+   }
+@keyframes myfirstRc
+{
+from{   
+   transform:rotate(130deg);     /*旋转效果*/
+-ms-transform:rotate(130deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(130deg); /* Safari 和 Chrome */
+    }
+to {      /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-moz-transform:rotate(150deg); 	/* Firefox */
+                       }
+}
+ 
+@-webkit-keyframes myfirstRc  /* Safari 和 Chrome */
+{
+from{    transform:rotate(130deg);     /*旋转效果*/
+-ms-transform:rotate(130deg); 	/* IE 9 */
+ 
+-webkit-transform:rotate(130deg); /* Safari 和 Chrome */
+     }
+to {        transform:rotate(150deg);     /*旋转效果*/
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-moz-transform:rotate(150deg); 	/* Firefox */
+-webkit-transform:rotate(150deg); /* Safari 和 Chrome */
+ }
+}
+@keyframes myfirstRcc
+{
+from{   
+ 
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-webkit-transform:rotate(150deg); /* Safari 和 Chrome */
+      }
+to {      
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-moz-transform:rotate(130deg); 	/* Firefox */
+                       }
+}
+ 
+@-webkit-keyframes myfirstRcc  /* Safari 和 Chrome */
+{
+from{    
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-webkit-transform:rotate(150deg); /* Safari 和 Chrome */
+       }
+to {    
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-webkit-transform:rotate(130deg); /* Safari 和 Chrome */
+     }
+}
+ 
+/*ddddddddddddddddddddddddddddddddddddddddddd*//*箭头效果*/
+#arrow_rightd{ 
+       position:absolute; 
+        border-radius:1px;
+ background-color:#f5f5f5;  
+  width:0px; height:2px;       
+  left:1120px;
+  top:145px;                        
+ transform:rotate( 130deg);     /*旋转效果*/
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-webkit-transform:rotate( 130deg); /* Safari 和 Chrome */
+
+ transform-origin:0%  50%;/*          设置旋转圆心                IE 9 */      
+-ms-transform-origin:0% 50%; 		/* IE 9 */	/* Safari 和 Chrome */
+-webkit-transform-origin:0% 50%;	/* Safari 和 Chrome */	/* Firefox */
+
+}    
+.arrow_rightd{
+ animation: myfirstRd 0.5s;
+-webkit-animation: myfirstRd 0.5s;	/* Safari 和 Chrome */
+ 
+}	 
+.arrow_rightdd{
+ animation: myfirstRdd 0.5s;
+-webkit-animation: myfirstRdd 0.5s;	/* Safari 和 Chrome */
+ 	 
+}
+@keyframes myfirstRd
+{
+from{    width:0px;
+   transform:rotate(130deg);     /*旋转效果*/
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-moz-transform:rotate(130deg); 	/* Firefox */
+-webkit-transform:rotate(130deg); /* Safari 和 Chrome */
+      }
+to {    width:35px;  
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-moz-transform:rotate(150deg); 	/* Firefox */
+-webkit-transform:rotate(150deg); /* Safari 和 Chrome */
+     }
+}
+ 
+@-webkit-keyframes myfirstRd  /* Safari 和 Chrome */
+{
+from{   width:0px;  
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-moz-transform:rotate(130deg); 	/* Firefox */
+-webkit-transform:rotate(130deg); /* Safari 和 Chrome */
+     }
+to { width:35px;  
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-moz-transform:rotate(150deg); 	/* Firefox */
+-webkit-transform:rotate( 150deg); /* Safari 和 Chrome */
+     }
+}
+
+@keyframes myfirstRdd
+{
+from{    width:35px;
+   transform:rotate(150deg);     /*旋转效果*/
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-moz-transform:rotate(150deg); 	/* Firefox */
+-webkit-transform:rotate(150deg); /* Safari 和 Chrome */
+      }
+to {    width: 0px;  /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-moz-transform:rotate(130deg); 	/* Firefox */
+-webkit-transform:rotate(130deg); /* Safari 和 Chrome */
+      }
+}
+ 
+@-webkit-keyframes myfirstRdd  /* Safari 和 Chrome */
+{
+from{   width:35px;  
+-ms-transform:rotate(150deg); 	/* IE 9 */
+-moz-transform:rotate(150deg); 	/* Firefox */
+-webkit-transform:rotate(150deg); /* Safari 和 Chrome */
+       }
+to { width:  0px; transform-origin:0  0 ;    /* 设置圆心*/ transform:rotate(-20deg);     /*旋转效果*/
+-ms-transform:rotate(130deg); 	/* IE 9 */
+-moz-transform:rotate(130deg); 	/* Firefox */
+-webkit-transform:rotate( 130deg); /* Safari 和 Chrome */
+     }
+}

@@ -15,15 +15,14 @@ public:
  k    fun ( )
 { 
   k   a ;
- 
- cout<<a.a;
-return    a;  
+  *a.a=10;
+ cout<<*a.a<<endl;
+return  a;  
 }
  
 int  main() {
-  
 k c = fun();
- cout<<c.a;
+cout<<"函数外"<<*c.a<<endl;
 cout<<"end\n";
  
 }
