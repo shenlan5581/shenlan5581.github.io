@@ -98,7 +98,7 @@ a{
   color:rgb(0, 0, 0);
 }
 code{
-  background-image: url("https:shenlan5581.github.io./img/black.jpeg");
+ 
   border-style:solid;
   border-width:0px;
   border-color: rgb(255, 255, 255);
@@ -109,6 +109,9 @@ code{
   background-color: rgb(52, 58, 59); 
   border-radius: 10px;
   padding: 5px;
+}
+#x{
+display:block;
 }
 #clean{
 clear: both;
