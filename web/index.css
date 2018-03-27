@@ -16,6 +16,7 @@ margin:auto;
   opacity: 1; 
   width:100%;
   height:80px;
+ 
 }
 #auther{
   font-size :10px;
@@ -46,6 +47,12 @@ margin:auto;
   width: 120px;
   height:120px;
   border-radius:20px;
+  transition:margin-top 1s;
+  -webkit-transition:margin-top  1s;
+ 
+}
+#info>img:hover{   /*头像*/
+  margin-top: 20px;;
 }
 
 #src{ 
@@ -73,6 +80,12 @@ hr{
   padding: 15px;  /* 内边框*/ 
   float: left; 
  }
+ 
+
+
+
+
+ /* ---------*/
  #middle{
   font-size: 90%;
   width:1000px; 
@@ -102,8 +115,12 @@ a{
 web{   
    position:relative;
    display:block;
-   height:700px;
+   height:500px;
+   padding:70px;
 }
+ 
+ 
+
 .server
 { font-size:10px;
   padding:10px;;
@@ -114,7 +131,22 @@ web{
   border-radius:5px;
   position:absolute;
   display:block;
+  box-shadow: 5px 10px 10px #dfdfdf;
+  background-color: rgba(247, 247, 247, 0.631);
+  transition:border-color  1s;
+  -webkit-transition:border-color 1s;
+
+  transition:font-size  1s;
+  -webkit-transition:font-size  1s;
+ 
 }
+.server:hover{
+   border-color:rgba(6, 128, 243, 0.849);
+   font-size:20px;
+ 
+ 
+ } 
+
 .client{
   color:rgb(157, 157, 157);  
   padding:10px;;
@@ -128,6 +160,8 @@ web{
   left:70px;
   width :90px;
   height:40px;
+  box-shadow: 5px 10px 10px #dfdfdf;
+  background-color: rgba(247, 247, 247, 0.631);
 }
 web>client1{
   
@@ -135,7 +169,7 @@ web>client1{
 }
  
 web>server{
-  opacity:0.5;
+  opacity:1;
   left:480px;
   top:120px;
   width :400px;
@@ -152,12 +186,14 @@ web>server>pthread_pool{
   top:60px;
   width :100px;
   height:100px;
+
 }
 web>server>protocol{
   left:240px;
   top:195px;
   width :100px;
   height:30px;
+  
 }
 
 web>server>service{
@@ -173,24 +209,26 @@ web>server>queue{
   height:80px;
 }
 http{
-  opacity: 0.5;
-  color:rgb(232, 15, 15);  
+  background-color: rgb(255, 255, 255);
+  opacity: 1;
+  color:rgb(12, 78, 219);  
   text-align: center;
   border-style:solid;
   border-width: 1px;
-  border-color: rgb(0, 127, 131);
   border-radius:5px;
+  border-color: rgb(182, 182, 182);
   display:block;
   position:absolute;
   top:335px;
   left:90px;
   width :70px;
   height:20px;
+ 
 }
 #doc{
-  font-size: 10px;
+  font-size: 12px;
   font-style: italic;
-  color:rgb(87, 175, 209);
+  color:rgb(9, 144, 197);
   text-align: center;
   display:block;
   position:absolute;
@@ -198,7 +236,7 @@ http{
   left:70px;
   width :300px;
   height:100px;
-
+  font-weight: bold;
 }
  
 
