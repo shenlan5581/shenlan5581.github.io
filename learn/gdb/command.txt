@@ -3,3 +3,6 @@ layout asm 显示汇编
 layout regs 现实汇编和寄存器
 layout split 源码和汇编
 
+gdb 调试 二进制
+x 命令：
+格式 ：  x /nfu
