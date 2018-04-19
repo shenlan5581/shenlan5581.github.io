@@ -1,0 +1,68 @@
+nginx , php 及 mysql-PDO 扩展
+
+vsesion:
+nginx-1.12.2
+     prce-8.38
+     zlib-1.2.11
+     openssl-fips-2.0.16
+php-7.2.4
+     libxml2
+     libxml2.dev
+nginx
+   nginx 所依赖的三个包不需要编译下载完放好就行,直接在配置的时候设定源码路径
+   例：  ./configure 
+         --prefix = [安装路径]
+         --with-pcre=[下载的源码路径]
+         --with-zlib=[下载的源码路径]
+         --with-openssl=[下载的源码路径]
+         make && make install
+         nginx 配置较多 具体看官方文档
+php
+   php-fpm    
+   先编译
+(编译 php 7 ) 需要 pdo扩展(这里折腾了很长时间） 下面是关于 mysql 的编译选项
+
+        ./configure --prefix=[安装路径] --enable-fpm --with-mysql(with mysql 因该是被遗弃了）
+        --enable-mysqlnd
+        --with-mysqli=mysqlnd
+        --with-pdo-mysql=mysqlnd
+        make 
+        sudo make install  (标准文档）
+
+（注意使用方式 new PDO()函数中指定所使用的驱动，
+  这里是mysql,则必须指定mysql,否则就会报错找不到驱动）
+    
+     安装完以后需要复制   三个文件
+     1 源码中的 php.ini-development
+       cp 到 安装路径的 php文件中 更名 php.ini
+     2 etc 文件中的  php-fpm.conf.default
+       复制一份 更名为 php-fpm.conf
+       (这例也碰到了 line 125 的问题 该文件的最后一行 包含了一个另一个配置文件，
+       出错了检查路径 ： 之前装在系统目录的时候总出现该错误 后来单独文件安装没再出现)
+     2 php-fpm.d 目录中的 www.conf.default 
+       复制一份 更名为 www.conf 
+       <yellow>坑点1</yellow>
+       (该文件就是刚刚125所包含的配置文件
+          官方文档中的描述是：
+          <rea>  
+            ; Unix user/group of processes
+            ; Note: The user is mandatory. If the group is not set, the default user's group
+            ;       will be used.
+            user = www-data
+            group = www-data
+          </rea>
+       (这里所修改的就是此文件，第2个文件中并未包含这些)
+       另外还碰到 error_log 打不开
+               php_fpm_log 打不开
+       路径提示指向系统目录 设置所有能找到的选项无果
+       妥妥的更新了 php 版本 解决
+关于nginx的配置 
+       nginx 和 php 的文档都很详细 
+       nginx 只需要把 php 的那几个#号 删了就行
+       果然默契 </yellow>
+
+补充:      !默认文件路径可在 启动时 -p  更改
+           !nginx 配置其他文件夹路径时 php 配置项也要修改
+  
+
+

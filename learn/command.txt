@@ -1,6 +1,9 @@
 find  文件查找
 
 find [path]  -name  [filename] 
+find /etc -name sudo*
+
+
 
 grep 文件内容查找
 

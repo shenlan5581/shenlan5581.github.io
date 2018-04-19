@@ -20,6 +20,9 @@ shell> tcpdump -l -i eth0 -w - src or dst port 3306 | strings
       权限     库名.*(通配符号)          帐户名         
                  *.*
                  *
+mysql> grant update,select on design.* to 'k'@'127.0.0.1';
+授权  更新，查询  在 库design的所有表中  给 用k
+
 删除用户帐户  DROP
     DROP USER ‘username'@'localhost'
 
@@ -157,11 +160,16 @@ call dorepeat(1000);
 select @x;
 
 
+设置数据库支持中文 对已经建立的库有效 alter table table_name convert to character set utf8;
 
 
-
-
-
+备份与恢复
+备份  包含用户信息(未知是否能用）
+root@ki://home/k# mysqldump -uroot -pxingke  --all-databases >/home/k/dump.sql
+                                                                            所有的库                              转储文件
+恢复
+mysql  -uroot -pxingke  < dump.sql
+       
 
 
 

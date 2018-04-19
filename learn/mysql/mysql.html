@@ -77,3 +77,13 @@ replace replace into service_table
 (如果 表中有相同的记录（注意必须有主键并且包含主键) 则删除老记录插入新的
  负责 等同于 insert）
 
+
+create table img( id int  unsigned not null auto_increment primary key, b_id int unsigned not null,  w_id int unsigned not null, img_name char(30) not null, file_name char(255) not null, descriptor char(255) not null );
+//设置数据库支持中文 
+对已经建立的库有效
+alter table table_name convert to character set utf8;
+
+
+
+
+
