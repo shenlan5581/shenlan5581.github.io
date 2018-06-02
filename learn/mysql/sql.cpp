@@ -18,7 +18,9 @@ mysql
 
 
 
-
+联合查询
+select * from t1 join t2 on t2.tid =t1.tid wherew id = 3;
+从 t1查询 加入 从t2 查询（在表2上tid = t1.tid)  where
 
 
 
