@@ -1,0 +1,94 @@
+mysql存储过程
+
+
+
+
+ql> delimiter //    **变更结束符号
+mysql> CREATE PROCEDURE dorepeat(p1 INT)
+    -> BEGIN
+    ->   SET @x = 0;
+    ->   REPEAT SET @x = @x + 1; UNTIL @x > p1 END REPEAT;
+         此处是一个循环           **循环条件
+    -> END    
+    -> //
+Query OK, 0 rows affected (0.00 sec)
+mysql> delimiter ;
+mysql> CALL dorepeat(1000);
+Query OK, 0 rows affected (0.00 sec)
+mysql> SELECT @x;
++------+
+| @x   |
++------+
+| 1001 |
++------+
+1 row in set (0.00 sec)
+
+
+
+
+学习mysql中call语句调用函数的例子。
+代码：
+
+mysql> delimiter $$
+mysql> CREATE FUNCTION isodd(input_number int) //创建函数
+    ->        RETURNS int
+    -> BEGIN
+    ->         DECLARE v_isodd INT;
+    ->
+    ->         IF MOD(input_number,2)=0 THEN
+    ->                 SET v_isodd=FALSE;
+    ->         ELSE
+    ->                 SET v_isodd=TRUE;
+    ->         END IF;
+    ->
+    ->         RETURN(v_isodd);
+    ->
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE PROCEDURE myProc(aNumber int) //创建mysql存储过程
+    -> Begin
+    ->      IF (isodd(aNumber)) THEN
+    ->           SELECT ' is odd';
+    ->      ELSE
+    ->           SELECT ' is even';
+    ->      END IF;
+    -> END$$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter ;
+mysql> call myProc(2); //call 调用存储过程
++----------+
+| is even  |
++----------+
+|  is even |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call myProc(1); //call 调用存储过程
++---------+
+| is odd  |
++---------+
+|  is odd |
++---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call myProc(4); //调用mysql存储过程
++----------+
+| is even  |
++----------+
+|  is even |
++----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> drop procedure myProc; //删除mysql存储过程
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> drop function isodd; //删除mysql函数
+Query OK, 0 rows affected (0.00 sec)
