@@ -11,14 +11,7 @@ family   id   member
     source <路径> 导入 
                     
                     [ **MySQL 5.6 手册**]
-6.1 安全
-(永远不要给任何人访问数据库中的user表)
-show grants for 'usrname'@'localhos'  查看用户权限
-revoke      删除哪些不要的权限
-shell> tcpdump -l -i eth0 -w - src or dst port 3306 | strings 
-（未加密 查看 sql 内容）
-
-##用户账户(权限）
+##[用户账户(权限）]
 1 通过mysql语句
 创建用户  CREATE USER
    ''@'%' (用户名为空，主机为空）表示任何用户从任何主机
@@ -40,15 +33,30 @@ mysql> grant update,select on design.* to 'k'@'127.0.0.1';
 2 通过修改授权表
 ..............
 
-##备份恢复
+##[备份恢复]
 二进制日志
 启动二进制日志 
     service start --log-bin[=base name]
     show binary logs; 显示二进制日志文件
 
-##优化
-数据库级别进行优化
-select语句
+##优化 [索引]
+*索引用于快速查找具有特定列值的行索引用于快速查找具有特定列值的行。
+#关于实现 有B-tree 和 hash 表
+
+查看
+show index from <table name> 
+
+#######注意列名的括号是必须的,括号中可指定 前缀长度及排序规则：wq
+
+(对于字符串 可以创建仅使用列值的前缀部分 并用语法来制定索引前缀长度）
+create index of_name on user (name (10));  索引长度为10
+(唯一索引 似的该列的所有值必须是不同的)
+create unique index of_info on user (name (10));  索引长度为10
+
+
+
+
+
 
 ##语言结构
 
@@ -91,8 +99,8 @@ mysql>  SELECT PARTITION_NAME,TABLE_ROWS  （查询分区名，行数）
 分区类型：
   1范围分区
   2列表分区
-  3hash分区
-  4key 分区
+  3 hash分区
+  4 key 分区
 
 (1)范围分区 
 CREATE TABLE  r1 (
@@ -152,6 +160,9 @@ MySQL支持存储的例程（过程和函数）。
 删除
 drop procedure     <name>
 drop function        <name>
+查看
+show procedure status
+show function  status
 ***例**********************
  create function t(x  char(10))  
        returns int  
@@ -219,19 +230,19 @@ for each row begin
     end//
 
 
-##备份与恢复
-备份  包含用户信息(未知是否能用）
-root@ki://home/k# mysqldump -uroot -pxingke  --all-databases >/home/k/dump.sql
-                                                                            所有的库                              转储文件
-恢复
-mysql  -uroot -pxingke  < dump.sql
-
 ## 视图
 create view v as select name from user where id >3 and id<10 //
 select * from v; 
 只显示该条件的
 
 
+
+##备份与恢复
+备份  包含用户信息(未知是否能用）
+root@ki://home/k# mysqldump -uroot -pxingke  --all-databases >/home/k/dump.sql
+   所有的库         转储文件
+恢复
+mysql  -uroot -pxingke  < dump.sql
 
 
 
@@ -250,6 +261,13 @@ dual 相当于一个 虚拟表
 SELECT 也可以用来检索不参考任何表而计算出的行。
 
 
+
+6.1 安全
+(永远不要给任何人访问数据库中的user表)
+show grants for 'usrname'@'localhos'  查看用户权限
+revoke      删除哪些不要的权限
+shell> tcpdump -l -i eth0 -w - src or dst port 3306 | strings 
+（未加密 查看 sql 内容）
 
 
 
