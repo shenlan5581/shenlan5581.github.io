@@ -1,0 +1,5 @@
+
+mysq -uroot -pxinkge 
+use design
+exit
+

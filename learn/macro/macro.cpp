@@ -3,7 +3,6 @@
 //#include <string>
 //using namespace std;
 
-
 #define   NAME "xingke"
 #define   NAME2  xingke 
 #define   SHOW1 NAME;  

@@ -1,0 +1,9 @@
+url 重写
+
+server {
+  listen 80;
+  server_name [匹配主机名]
+  return 301 http://xingke.store/[二级目录] (跳转目标)
+}
+
+
