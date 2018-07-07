@@ -5,6 +5,9 @@ family   id   member
 
 [常用SQL]
     设置数据库支持中文 对已经建立的库有效 alter table table_name convert to character set utf8;
+    alter table content add title varchar(100) after type;          #添加列
+    alter table content add primary key (id);                              #添加主键
+
     alter table  add <列名> [FIRST | AFTER] <列名>
     alter table  rename <new_table_name>
     alter table  change 
