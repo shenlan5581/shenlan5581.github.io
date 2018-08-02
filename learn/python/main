@@ -1,21 +1,13 @@
-#!/usr/bin/python
-#coding=utf-8
-import requests
-from bs4 import BeautifulSoup
+#!/home/ki/python/bin/python3.5
 
+#md : python 基础语法操作
+ 
+# 模块 倒入
+#import module                #倒入模块  k
+#print(module.Name)          #使用模块  k 的 变量 Name
+#from  module  import sex   #倒入模块  k 的变量 sex
+#print(sex)                #使用变量sex（这里可省略模块名）
 
-r = requests.get('http://slide.news.sina.com.cn/w/slide_1_2841_251621.html?cre=picpc&mod=picg&loc=4&r=0&doct=0&rfunc=89&tj=none#p=1')
-#print(r.text) 
-soup = BeautifulSoup(r.text,'lxml')
-find = soup.find('a')
-print(find.string)
-
-
-#print response.read()
-
-#soup = BeautifulSoup(html_doc, 'lxml')  #声明BeautifulSoup对象
-#find = soup.find('p')  #使用find方法查到第一个p标签
-#print("find's return type is ", type(find))  #输出返回值类型
-#print("find's content is", find)  #输出find获取的值
-#print("find's Tag Name is ", find.name)  #输出标签的名字
-#print("find's Attribute(class) is ", find['class'])  #输出标签的class属性值
+#import syntax
+#import obj
+import  _yield

@@ -1,14 +1,1 @@
-
-#--模块包含
-python  模块
-（多文件包含）
-file 
-    def test() 
-      print("test")
-
-main
-
-import file  #包含模块
-file.test()    #调用模块
-
-    
+!python 中的对象 分为 可变和不可变对象（值和引用）
