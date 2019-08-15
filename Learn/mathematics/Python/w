@@ -1,0 +1,26 @@
+import set
+print("--A--")
+#求期待值
+expected_a=0
+for k,v in set.ca.items():
+     expected_a+=(k*v)
+     print(k*v)
+print(expected_a)
+#方差
+variance_a=0
+for k,v in set.ca.items():
+     variance_a+=(expected_a-k)*(expected_a-k) 
+     print((expected_a-k)*(expected_a-k))
+print(variance_a)
+
+
+
+
+expected_b=0
+print("--B--")
+for k,v in set.cb.items():
+     expected_b+=(k*v)
+     print(k*v)
+print(expected_b)
+
+
