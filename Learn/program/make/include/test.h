@@ -1,7 +1,6 @@
 
-
-#ifndef test_h
-#define test_h
+#ifndef Test_h
+#define Test_h
 
 
 #include <string>
