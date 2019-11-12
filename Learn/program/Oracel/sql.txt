@@ -1,0 +1,46 @@
+show linesize : 查看当前设置的sqlplus输出的最大行宽
+set linesize : 设置sqlplus输出的最大行宽
+column  列名 format a10
+
+查用户表
+select * from user_tables;
+insert into 表名 （列名1，列名2） Values （值1，'值2')
+添加值
+ALTER TABLE k ADD  ( 零件类型 VARCHAR2(40) );
+ALTER TABLE k ADD  ( 名称 VARCHAR2(40) );
+
+insert into k （ID,NAME,TEL,物料编码，名称，规格，代号，单位，材料，零件类型，毛重，净重，备注，说明，简称，技术要求，理论重量，补充规格）
+      Values （1,'k','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s');
+insert into item （item_no,item_name,item_code,item_type，item_grade，item_graph_no，item_weight，item_notes，item_attr，item_tech_note）
+      Values （1,'螺丝','k','标准件','s','s','s','s','s','s');
+insert into item （item_no,item_name,item_code,item_type，item_grade，item_graph_no，item_weight，item_notes，item_attr，item_tech_note）
+      Values （1,'涨管','k','外购件','s','s','s','s','s','s');
+
+
+改字段名；
+alter table Student rename name to StuName; 
+改字段类型；
+alter table Student modify (id varchar2(64));
+更新
+UPDATE employees SET salary=9100 WHERE employee_id=1234;
+
+
+
+CREATE TABLE student(
+  id INT PRIMARY KEY AUTO_INCREMENT COMMENT '学号',
+  name VARCHAR(200) COMMENT '姓名',
+  age    int COMMENT '年龄'
+) COMMENT='学生信息'
+
+create table item(
+    item_no number(10) primary key,
+    item_Name varchar(30) , 
+    item_code varchar(10) ,
+    item_type varchar(10) ,
+    item_grade varchar(30),
+    item_graph_no varchar(30),
+    item_weight varchar(30),
+    item_notes varchar(30),
+    item_attr varchar(30),
+    item_tech_note varchar(30)
+);
