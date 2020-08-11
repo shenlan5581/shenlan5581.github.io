@@ -1,0 +1,6 @@
+主分支追踪两个文件
+a.text
+b.text
+初始状态
+A：Av1(a.text:a)
+B：Bv1(b.text:b)

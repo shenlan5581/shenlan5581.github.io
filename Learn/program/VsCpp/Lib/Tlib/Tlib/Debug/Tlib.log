@@ -1,0 +1,3 @@
+﻿  stdafx.cpp
+  tlib.cpp
+e:\github\learn\program\vscpp\lib\tlib\tlib\tlib.cpp(8): error C4716: “tlib::test”: 必须返回一个值
