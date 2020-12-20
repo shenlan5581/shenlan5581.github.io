@@ -4,8 +4,8 @@
 
 <Workspace>
 	<Local Expanded="Yes" Name="Learn">
-		<Model Expanded="Yes" ID="{6F986DD4-1932-479D-8A5A-245217008FA8}" Name="数学" Type="{A3D646C2-7F72-4197-8A31-32275EB456B4}" URL="mathematics/数学.fem"/>
-		<Model ID="{3ADCCB21-10D4-4723-B872-CEDFF7F9F6AE}" Name="All" Type="{A3D646C2-7F72-4197-8A31-32275EB456B4}" URL="All.fem"/>
+		<Model Expanded="Yes" ID="{6F986DD4-1932-479D-8A5A-245217008FA8}" Loaded="No" Name="数学" Type="{A3D646C2-7F72-4197-8A31-32275EB456B4}" URL="mathematics/数学.fem"/>
+		<Model ID="{3ADCCB21-10D4-4723-B872-CEDFF7F9F6AE}" Name="All" Selected="Yes" Type="{A3D646C2-7F72-4197-8A31-32275EB456B4}" URL="All.fem"/>
 		<Model ID="{DC5A7BC8-DE06-49E9-8204-F2C1309612C9}" Name="经济" Type="{A3D646C2-7F72-4197-8A31-32275EB456B4}" URL="Finance/经济.fem"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
