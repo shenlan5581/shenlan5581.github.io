@@ -1,0 +1,4 @@
+    Test s ;
+    int (Test::*p)(string); //成员函数指针
+    p=&Test::test;
+    (s.*p)("ss");

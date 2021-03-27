@@ -1,0 +1,3 @@
+商店安装python
+
+git bash 运行  $winpty python ./main.py

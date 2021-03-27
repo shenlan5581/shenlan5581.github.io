@@ -7,6 +7,10 @@ git push origin  --delete 远程           ：删除远程分支<br>
 
 git reset  --hard 3h3ew3       回滚
 
+windows git 配置环境变量
+set node(环境变量名) c:\node.exe(路径)    --仅用户有效
+
+
 标签 （对应每次提交）
 git tag -a v1.4 -m 'my version 1.4' 创建标签（带说明）
 git tag  显示标签所有标签
