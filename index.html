@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html> 
-<head> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script type="text/javascript" src="./gitPage/index.js"></script>
-<link type="text/css" src="./gitPage/index.css"><link/>
-<title>K</title>   
-</head>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>GeoAR.js demo</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="/AR/aframe-ar-nft.js"></script>
+  </head>
 
-
-<body>    
-	<div id='cont'>
-	kk	
-	</div>
-</body>
-   <foot></foot>
-</html> 
- 
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-text
+        value="This content will always face you."
+        look-at="[gps-camera]"
+        scale="120 120 120"
+        gps-entity-place="latitude: <add-your-latitude>; longitude: <add-your-longitude>;"
+      ></a-text>
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+  </body>
+</html>
