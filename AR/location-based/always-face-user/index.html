@@ -15,11 +15,9 @@
 		embedded
 		arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
-        <a-text value="this is test." look-at="[gps-camera]" scale="20 25 25"
-            gps-entity-place="latitude: <your-latitude>; longitude: <your-longitude>"position="0 -3 0" ></a-text>
-
-        <a-box gps-projected-entity-place='latitude: 51.0489; longitude: -0.7240' position='0 -5 0' material='color: green' scale='1 1 1'></a-box>
-
+        <a-text value="this is test." scale="2 2 2"
+            gps-entity-place="latitude: <your-latitude>; longitude: <your-longitude>"position="0 -3 0" >
+        </a-text>
         <a-camera rotation-reader
             gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723'>
 		</a-camera>
