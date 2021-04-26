@@ -16,10 +16,16 @@
 		arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
         <a-text value="¸ßÉÐ¿Æ¼¼" look-at="[gps-camera]" scale="70 70 70"
-                 position="0 0 0"
-            gps-entity-place="latitude: your-latitude>; longitude: your-longitude;"></a-text>
+            gps-entity-place="latitude: your-latitude>; longitude: your-longitude;">
+        </a-text>
         <a-camera gps-camera rotation-reader>
 		</a-camera>
+        <a-entity
+            gltf-model='/AR/nft/trex/sceneb.glb'
+            scale="3 3 3"
+            position="10 10 -10"
+        >
+    </a-entity>
 	</a-scene>
 </body>
 
