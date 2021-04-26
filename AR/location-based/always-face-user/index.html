@@ -16,9 +16,9 @@
 		arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
         <a-text value="this is test." look-at="[gps-camera]" scale="20 25 25"
-            gps-entity-place="latitude: <your-latitude>; longitude: <your-longitude>"position="0 1 0" ></a-text>
+            gps-entity-place="latitude: <your-latitude>; longitude: <your-longitude>"position="0 -3 0" ></a-text>
 
-        <a-box gps-projected-entity-place='latitude: 51.0489; longitude: -0.7240' position='0 10 0' material='color: green' scale='10 10 10'></a-box>
+        <a-box gps-projected-entity-place='latitude: 51.0489; longitude: -0.7240' position='0 -5 0' material='color: green' scale='1 1 1'></a-box>
 
         <a-camera rotation-reader
             gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723'>
@@ -28,7 +28,7 @@
             gps-entity-place="latitude: <your-latitude>; longitude: <your-longitude>"
             gltf-model='/AR/nft/trex/sceneb.glb'
             scale="0.9 0.9 0.9"
-            position="0 0 300"
+            position="0 -10 0"
         >
          </a-entity>
 	</a-scene>
