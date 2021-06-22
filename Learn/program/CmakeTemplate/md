@@ -1,0 +1,2 @@
+CMake是一个方便快捷生成makefile 的工具
+最终还是需要makefile进行编译
