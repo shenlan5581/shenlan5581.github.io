@@ -1,0 +1,13 @@
+linux 下安装git
+
+创建git账户(该账户用来连接ssh) 不必须 可以使用已有账户
+
+服务端添加 客户机公钥   .ssh/authorized_keys 创建该文件 写入客户机公钥
+(可在客户机使用 ssh-copy-id k@192.168.0.1 命令自动添加)
+
+服务端创建文件夹作为仓库 ,并初始化 
+git init --bare   举例 /home/k/Test.git(这里.git是个文件夹路径)
+
+客户机添加远端 git remote add k@url:/home/k/Test.git 
+
+然后即可 推送 拉取

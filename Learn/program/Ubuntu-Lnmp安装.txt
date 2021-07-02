@@ -1,0 +1,39 @@
+apt install nginx 
+安装 nginx  然后通过浏览器访问   
+位置 /etc/nginx
+启动 sudo service nginx start  停止 sudo service nginx stop
+nginx 配置 vim /etc/nginx/conf.d/test.conf
+注意:服务启动用户
+默认站点关闭(删除sites-enabled配置否则80占用) 
+nginx -t 查看配置错误
+
+
+apt install php-fpm  位置 /etx/php
+php-fpm配置 pool.d  文件下的 www.conf
+user=
+group=
+listen=127.0.0.1:9000
+
+php extends
+apt install php7.4-mysqli
+apt install php7.4-xml
+
+service php.7.4-fpm start
+(注意php脚本错误 会引起服务器500 开启php错误提示)
+
+nginx 配置
+http {
+      server{
+        listen 80 default;
+	server_name 127.0.0.1;
+        root  /home/k/www;
+        index index.php index.html index.htm;
+ 	location ~ \.php {
+		fastcgi_pass    127.0.0.1:9000;
+		include         fastcgi_params;
+		fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+		fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
+		client_max_body_size 5m;
+		}
+        }
+
